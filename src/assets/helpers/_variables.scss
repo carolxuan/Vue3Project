@@ -1,0 +1,126 @@
+// Color system
+$white: #fff !default;
+$gray-100: #f2f2f2 !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+$red: #e62525 !default;
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900,
+  ),
+  $grays
+);
+
+$primary: #f1ca89 !default;
+$secondary: #cc9b6d !default;
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'light': $white,
+    'dark': $black,
+    'gray': $gray-700,
+    'gray3': $gray-300,
+    'gray4': $gray-400,
+    'gray5': $gray-500,
+    'red': $red,
+  ),
+  $theme-colors
+);
+
+// Spacing
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
+    3: (
+      $spacer * 1,
+    ),
+    4: (
+      $spacer * 1.5,
+    ),
+    5: (
+      $spacer * 2,
+    ),
+    6: (
+      $spacer * 2.5,
+    ),
+    7: (
+      $spacer * 3,
+    ),
+    8: (
+      $spacer * 3.5,
+    ),
+    9: (
+      $spacer * 4,
+    ),
+    10: (
+      $spacer * 4.5,
+    ),
+    11: (
+      $spacer * 5,
+    ),
+  ),
+  $spacers
+);
+
+// scss-docs-start display-headings
+$display-font-sizes: (
+  1: 5rem,
+  2: 4.5rem,
+  3: 4rem,
+  4: 3.5rem,
+  5: 3rem,
+  6: 2.5rem,
+  7: 2rem,
+  8: 1.75rem,
+  9: 1.5rem,
+  10: 1.125rem,
+) !default;
+
+$display-font-weight: 500 !important;
+// scss-docs-end display-headings
+
+// opacity
+$utilities: (
+  'opacity': (
+    property: opacity,
+    class: o,
+    values: (
+      0: 0,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
+);
