@@ -23,7 +23,7 @@
                 <label for="customFile" class="form-label">或 上傳圖片
                   <i class="fas fa-spinner fa-spin"></i>
                 </label>
-                <input type="file" id="customFile" class="form-control">
+                <input type="file" id="customFile" class="form-control" @change="uploadFile">
               </div>
               <img :src="tempProduct.imageUrl" class="img-fluid" alt="">
               <!-- 延伸技巧，多圖 -->
@@ -138,6 +138,9 @@ export default {
     },
     hideModal () {
       this.modal.hide()
+    },
+    uploadFile () {
+
     }
   },
   mounted () {
