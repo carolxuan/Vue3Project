@@ -1,21 +1,15 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <UserNavbar></UserNavbar>
+  <h2>這是首頁～～～</h2>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import UserNavbar from '@/components/UserNavbar.vue'
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
+    UserNavbar
   },
-  created () {
-    console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH)
-  }
+  created () {}
 }
 </script>

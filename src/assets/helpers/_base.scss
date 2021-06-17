@@ -1,0 +1,60 @@
+/* 全站設定
+-------------------------------------------------- */
+/* 全域 border box */
+body {
+  color: #000;
+  overflow-x: hidden !important;
+  -ms-overflow-style: none;
+  font-family: 'Merriweather', Arial, sans-serif, serif;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul,
+ol,
+li {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  outline: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+label {
+  margin-bottom: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -29,8 +29,8 @@ $grays: map-merge(
   $grays
 );
 
-$primary: #f1ca89 !default;
-$secondary: #cc9b6d !default;
+$primary: #1768AC !default;
+$secondary: #A7BBC7 !default;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -44,7 +44,8 @@ $theme-colors: map-merge(
     'gray3': $gray-300,
     'gray4': $gray-400,
     'gray5': $gray-500,
-    'red': $red,
+    'danger': $red,
+    'success':#FB9300
   ),
   $theme-colors
 );
