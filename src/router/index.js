@@ -1,50 +1,42 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
   {
     path: '/login',
     component: () => import('../views/Login.vue')
   },
+  // 前台
   {
-    path: '/dashboard',
-    component: () => import('../views/Dashboard.vue'),
+    path: '/',
+    component: () => import('../views/Layout.vue'),
     children: [
       {
-        path: 'products',
-        component: () => import('../views/Products.vue')
+        path: '/',
+        name: 'Home',
+        component: () => import('../views/Front/Home.vue')
       },
       {
-        path: 'orders',
-        component: () => import('../views/Orders.vue')
-      }
-    ]
-  },
-  {
-    path: '/user',
-    component: () => import('../views/Userboard.vue'),
-    children: [
-      {
         path: 'cart',
-        component: () => import('../views/UserCart.vue')
+        component: () => import('../views/Front/UserCart.vue')
       },
       {
         path: 'product/:productId',
-        component: () => import('../views/UserProduct.vue')
+        component: () => import('../views/Front/UserProduct.vue')
+      }
+    ]
+  },
+  // 後台
+  {
+    path: '/admin',
+    component: () => import('../views/Admin/Dashboard.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/Admin/Products.vue')
+      },
+      {
+        path: 'orders',
+        component: () => import('../views/Admin/Orders.vue')
       }
     ]
   }

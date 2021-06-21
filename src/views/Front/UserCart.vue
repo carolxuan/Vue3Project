@@ -37,7 +37,9 @@
               <td>
                 <div class="btn-group btn-group-sm">
                 <button type="button" class="btn btn-outline-secondary" @click="getProduct(item.id)">查看更多</button>
-                <button type="button" class="btn btn-outline-primary">加到購物車</button>
+                <button type="button" class="btn btn-outline-primary" @click="addCart(item.id)">
+                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="this.status.loadingItem === item.id"></span>
+                  加到購物車</button>
               </div>
               </td>
             </tr>
@@ -54,7 +56,10 @@ export default {
     return {
       products: [],
       product: {},
-      isLoading: false
+      status: {
+        loadingItem: ''
+      }
+      // isLoading: false
     }
   },
   methods: {
@@ -64,12 +69,25 @@ export default {
       this.$http.get(url)
         .then(res => {
           this.products = res.data.products
-          console.log('products:', res)
           this.isLoading = false
         })
     },
     getProduct (id) {
-      this.$router.push(`/user/product/${id}`)
+      this.$router.push(`/product/${id}`)
+    },
+    addCart (id) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      this.status.loadingItem = id
+      const cart = {
+        product_id: id,
+        qty: 1
+      }
+      this.$http.post(url, { data: cart })
+        .then(res => {
+          console.log(res.data)
+          this.status.loadingItem = ''
+          this.$httpMessageState(res, '加入購物車')
+        })
     }
   },
   created () {
