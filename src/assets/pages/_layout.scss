@@ -2,20 +2,36 @@
   content:'';
   display: none;
 }
+.dropdown-toggle::after, .dropup .dropdown-toggle::after {
+  content:'';
+  display: none;
+}
 .float-icon {
   position: fixed;
-  right: 16px;
-  bottom: 50px;
+  right: 24px;
+  bottom: 32px;
+  z-index: 99;
   button {
     border-radius: 50%;
     width: 50px;
     height: 50px;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
   }
-  span {
+  i {
     vertical-align: middle;
   }
   .badge {
     border-radius: 50%;
     top: 9px;
+  }
+}
+
+.dropdown-cart-menu{
+  min-width: 460px;
+  border: none;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  @include apple () {
+    min-width: 320px;
   }
 }

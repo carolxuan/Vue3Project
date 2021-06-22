@@ -3,7 +3,7 @@
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><router-link to="/user/cart">購物車</router-link></li>
+        <li class="breadcrumb-item"><router-link to="/cart">產品列表</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">products.title</li>
       </ol>
     </nav>

@@ -1,5 +1,4 @@
 <template>
-  <Loading :active="isLoading"></Loading>
   <div class="container">
     <div class="row">
       <div class="col-md-3">
@@ -38,7 +37,7 @@
                 <div class="btn-group btn-group-sm">
                 <button type="button" class="btn btn-outline-secondary" @click="getProduct(item.id)">查看更多</button>
                 <button type="button" class="btn btn-outline-primary" @click="addCart(item.id)">
-                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="this.status.loadingItem === item.id"></span>
+                   <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
                   加到購物車</button>
               </div>
               </td>
@@ -47,51 +46,77 @@
         </table>
       </div>
     </div>
+    <!-- 購物車 -->
+    <div>
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th></th>
+            <th>品名</th>
+            <th style="width: 110px">數量</th>
+            <th>單價</th>
+          </tr>
+        </thead>
+        <tbody>
+        <template v-if="cart.carts">
+          <tr v-for="item in cart.carts" :key="item.id">
+            <td>
+              <a href="#" @click.prevent="removeCartItem(item.id)">
+                <i class="bi bi-x-circle text-danger" style="font-size:24px"></i>
+              </a>
+            </td>
+            <td>
+              {{ item.product.title }}
+            </td>
+            <td>
+              {{ item.qty }} / {{ item.product.unit }}
+            </td>
+            <td class="text-end">
+              {{ $filters.currency(item.final_total) }}
+            </td>
+          </tr>
+        </template>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="3" class="text-end">總計</td>
+          <td class="text-end">{{ $filters.currency(cart.total) }}</td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      products: [],
-      product: {},
-      status: {
-        loadingItem: ''
-      }
-      // isLoading: false
+      product: {}
     }
   },
   methods: {
-    getProducts () {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
-      this.isLoading = true
-      this.$http.get(url)
-        .then(res => {
-          this.products = res.data.products
-          this.isLoading = false
-        })
-    },
     getProduct (id) {
       this.$router.push(`/product/${id}`)
     },
-    addCart (id) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
-      this.status.loadingItem = id
-      const cart = {
-        product_id: id,
-        qty: 1
-      }
-      this.$http.post(url, { data: cart })
-        .then(res => {
-          console.log(res.data)
-          this.status.loadingItem = ''
-          this.$httpMessageState(res, '加入購物車')
-        })
-    }
+    addCart (id, qty = 1) {
+      this.$store.dispatch('cartModules/addCart', { id, qty })
+    },
+    removeCartItem (id) {
+      this.$store.dispatch('cartModules/removeCartItem', id)
+    },
+    ...mapActions('productsModules', ['getProducts']),
+    ...mapActions('cartModules', ['getCart'])
+  },
+  computed: {
+    ...mapGetters('productsModules', ['products']),
+    ...mapGetters('cartModules', ['cart'])
   },
   created () {
     this.getProducts()
+    this.getCart()
   }
 }
 </script>

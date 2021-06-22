@@ -8,11 +8,14 @@ import App from './App.vue'
 import router from './router'
 import { currency, date } from './methods/filters'
 import $httpMessageState from './methods/pushMessageState'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import store from './store'
 
 const app = createApp(App)
 app.config.globalProperties.$filters = { currency, date }
 app.config.globalProperties.$httpMessageState = $httpMessageState
 app.use(VueAxios, axios)
 app.use(router)
+app.use(store)
 app.component('Loading', Loading)
 app.mount('#app')
