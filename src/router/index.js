@@ -13,6 +13,9 @@ const routes = [
       {
         path: '/',
         name: 'Home',
+        meta: {
+          title: '首頁'
+        },
         component: () => import('../views/Front/Home.vue')
       },
       {
@@ -22,6 +25,10 @@ const routes = [
       {
         path: 'product/:productId',
         component: () => import('../views/Front/UserProduct.vue')
+      },
+      {
+        path: 'cartList',
+        component: () => import('../views/Front/CartList.vue')
       }
     ]
   },

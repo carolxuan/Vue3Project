@@ -15,7 +15,7 @@
   <div class="float-icon btn-group dropup">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-bag-plus-fill" style="font-size: 24px"></i>
-      <span class="badge bg-danger">2</span>
+      <span class="badge bg-danger">{{ cartLength }}</span>
     </button>
     <div class="dropdown-menu dropdown-cart-menu">
       <table class="table table-sm">
@@ -28,29 +28,32 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>iorjgieogergergergerg</td>
-            <td>1 / 件</td>
-            <td>1000元</td>
-            <td class="text-end">
-              <a href="#">
-                <i class="bi bi-x-circle text-danger" style="font-size: 24px"></i>
-              </a>
-            </td>
-          </tr>
+          <template v-if="cart.carts">
+            <tr v-for="item in cart.carts" :key="item.id">
+              <td>{{ item.product.title }}</td>
+              <td>{{ item.qty }} / {{ item.product.unit }}</td>
+              <td>{{ $filters.currency(item.final_total) }}</td>
+              <td class="text-end">
+                <a href="#" @click.prevent="removeCartItem(item.id)">
+                  <i class="bi bi-x-circle text-danger" style="font-size: 24px"></i>
+                </a>
+              </td>
+            </tr>
+            <tr v-if="cartLength < 1">
+              <td class="text-center" colspan="4"><h5>購物車是空的</h5></td>
+            </tr>
+          </template>
         </tbody>
         <tfoot>
           <tr>
             <td></td>
             <td></td>
-            <td>總計</td>
-            <td>222222</td>
+            <td class="fw-bold">總計</td>
+            <td class="text-end">{{ $filters.currency(cart.total) }}</td>
           </tr>
         </tfoot>
       </table>
-      <a href="#" class="btn btn-primary d-block">
-        <i class="fa fa-cart-plus" aria-hidden="true"></i> 結帳去
-      </a>
+      <router-link to="/cartList" class="btn btn-primary d-block" v-if="cartLength > 0">前往結賬 <i class="bi bi-chevron-right"></i></router-link>
     </div>
   </div>
   <div class="container mt-3 position-relative">
@@ -64,6 +67,7 @@
 <script>
 import ToastMessages from '@/components/ToastMessages.vue'
 import emitter from '@/methods/emitter'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -74,10 +78,20 @@ export default {
       emitter
     }
   },
+  methods: {
+    removeCartItem (id) {
+      this.$store.dispatch('cartModules/removeCartItem', id)
+    },
+    ...mapActions('cartModules', ['getCart'])
+  },
   computed: {
     isLoading () {
       return this.$store.state.isLoading
-    }
+    },
+    ...mapGetters('cartModules', ['cart', 'cartLength'])
+  },
+  created () {
+    this.getCart()
   }
 }
 </script>

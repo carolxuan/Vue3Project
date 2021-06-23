@@ -3,7 +3,8 @@ import axios from 'axios'
 export default {
   namespaced: true,
   state: {
-    cart: {}
+    cart: {},
+    cartLength: 0
   },
   actions: {
     getCart (context) {
@@ -12,6 +13,7 @@ export default {
       axios.get(url)
         .then(res => {
           context.commit('CART', res.data.data)
+          context.commit('CART_LENGTH', res.data.data.carts.length)
           context.commit('LOADING', false, { root: true })
         })
     },
@@ -41,11 +43,17 @@ export default {
   mutations: {
     CART (state, payload) {
       state.cart = payload
+    },
+    CART_LENGTH (state, payload) {
+      state.cartLength = payload
     }
   },
   getters: {
     cart (state) {
       return state.cart
+    },
+    cartLength (state) {
+      return state.cartLength
     }
   }
 }

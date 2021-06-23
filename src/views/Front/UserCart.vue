@@ -46,45 +46,6 @@
         </table>
       </div>
     </div>
-    <!-- 購物車 -->
-    <div>
-      <table class="table align-middle">
-        <thead>
-          <tr>
-            <th></th>
-            <th>品名</th>
-            <th style="width: 110px">數量</th>
-            <th>單價</th>
-          </tr>
-        </thead>
-        <tbody>
-        <template v-if="cart.carts">
-          <tr v-for="item in cart.carts" :key="item.id">
-            <td>
-              <a href="#" @click.prevent="removeCartItem(item.id)">
-                <i class="bi bi-x-circle text-danger" style="font-size:24px"></i>
-              </a>
-            </td>
-            <td>
-              {{ item.product.title }}
-            </td>
-            <td>
-              {{ item.qty }} / {{ item.product.unit }}
-            </td>
-            <td class="text-end">
-              {{ $filters.currency(item.final_total) }}
-            </td>
-          </tr>
-        </template>
-        </tbody>
-        <tfoot>
-        <tr>
-          <td colspan="3" class="text-end">總計</td>
-          <td class="text-end">{{ $filters.currency(cart.total) }}</td>
-        </tr>
-        </tfoot>
-      </table>
-    </div>
   </div>
 </template>
 
