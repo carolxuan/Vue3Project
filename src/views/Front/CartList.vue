@@ -1,13 +1,125 @@
 <template>
-  <div>
-    結帳頁面
-    <div>
-      <button type="button" class="btn" @click="minus(item)">
-        <i class="bi bi-dash-circle" style="font-size: 24px"></i>
-      </button>
-      <button type="button" class="btn">
-        <i class="bi bi-plus-circle" style="font-size: 24px"></i>
-      </button>
+  <ul class="step-list wrap justify-content-center mb-8">
+    <li class="text-center active" aria-current="true">
+      <p class="mb-2">Step.01</p>
+      <h4><i class="bi bi-cart-fill"></i> 購物明細</h4>
+    </li>
+    <li class="text-center">
+      <p class="mb-2">Step.02</p>
+      <h4><i class="bi bi-credit-card"></i> 訂單資訊</h4>
+    </li>
+    <li class="text-center">
+      <p class="mb-2">Step.03</p>
+      <h4><i class="bi bi-check-circle"></i> 最後確認</h4>
+    </li>
+  </ul>
+  <section class="cart-list">
+    <h3 class="text-center mb-4">購物明細</h3>
+    <div class="cart-list-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>刪除</th>
+            <th>商品明細</th>
+            <th>數量</th>
+            <th class="text-end">單價</th>
+            <th class="text-end">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-if="cart.carts">
+            <tr v-if="cartLength < 1"><td colspan="5" class="text-center py-6">無商品明細</td></tr>
+            <tr v-for="(item, idx) in cart.carts" :key="idx">
+              <td>
+                <a href="#" @click.prevent="removeCartItem(item.id)">
+                  <i class="bi bi-x-circle text-danger" style="font-size: 24px"></i>
+                </a>
+              </td>
+              <td>
+                <div class="wrap">
+                  <img :src="item.product.imageUrl" :alt="item.product.title">
+                  <p>{{ item.product.title }}</p>
+                  <p>{{ item.product.description }}</p>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn px-0 py-0" @click="minus(item)">
+                  <i class="bi bi-dash-circle" style="font-size: 24px"></i>
+                </button>
+                <span class="px-3">{{ item.qty }}</span>
+                <button type="button" class="btn px-0 py-0" @click="add(item)">
+                  <i class="bi bi-plus-circle" style="font-size: 24px"></i>
+                </button>
+              </td>
+              <td class="text-end">{{ $filters.currency(item.product.price) }}</td>
+              <td class="text-end">NT ${{ $filters.currency(item.product.price * item.qty) }}</td>
+            </tr>
+          </template>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"><a href="#" class="btn btn-outline-primary" @click.prevent="removeCartAll(cartLength)">刪除全部</a></td>
+            <td colspan="3" class="text-end">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="請輸入優惠卷" aria-label="coupons-btn" aria-describedby="coupons-btn">
+                <button class="btn btn-outline-primary" type="button" id="coupons-btn">套用</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="text-end display-10 fw-bold">總金額 NT ${{ $filters.currency(cart.total) }}</td>
+          </tr>
+          <tr>
+            <td colspan="5" class="next-btn text-end">
+              <router-link to="/cart" class="btn btn-secondary me-4">
+                <i class="bi bi-chevron-left"></i> 繼續購物
+              </router-link>
+              <router-link to="/orderForm" class="btn btn-primary" v-if="cartLength > 0">
+                下一步 <i class="bi bi-chevron-right"></i>
+              </router-link>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
-  </div>
+  </section>
 </template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  methods: {
+    removeCartAll (len) {
+      if (len < 1) {
+        this.$swal({
+          title: '已經全部刪除，請勿重複點擊',
+          icon: 'error'
+        })
+        return
+      }
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
+      this.$http.delete(url)
+        .then(res => {
+          this.getCart()
+        })
+    },
+    removeCartItem (id) {
+      this.$store.dispatch('cartModules/removeCartItem', id)
+    },
+    minus (item) {
+      this.$store.dispatch('cartModules/minus', item)
+    },
+    add (item) {
+      this.$store.dispatch('cartModules/add', item)
+    },
+    ...mapActions('cartModules', ['getCart'])
+  },
+  computed: {
+    ...mapGetters('cartModules', ['cart', 'cartLength'])
+  },
+  created () {
+    this.getCart()
+  }
+}
+</script>

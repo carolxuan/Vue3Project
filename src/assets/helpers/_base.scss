@@ -13,8 +13,8 @@ body {
 .btn:focus,.btn:active:focus,
 .btn.active:focus,.btn.focus,
 .btn:active.focus,.btn.active.focus {  
-  outline: none !important;
-  border-color: transparent !important;
+  // outline: none !important;
+  // border-color: transparent !important;
   box-shadow: none !important;
 }
 *,
@@ -63,4 +63,7 @@ h6 {
 .wrap {
   display: flex;
   flex-wrap: wrap;
+}
+.swal2-title {
+  color: #fff !important;
 }

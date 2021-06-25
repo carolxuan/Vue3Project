@@ -1,17 +1,19 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">LOGO</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav">
-          <router-link to="/cart" class="nav-link">產品列表</router-link>
+  <header class="mb-8">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">LOGO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav">
+            <router-link to="/cart" class="nav-link">產品列表</router-link>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
   <div class="float-icon btn-group dropup">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-bag-plus-fill" style="font-size: 24px"></i>
@@ -23,7 +25,7 @@
           <tr>
             <th>品項</th>
             <th>數量</th>
-            <th>金額</th>
+            <th>小計</th>
             <th></th>
           </tr>
         </thead>
@@ -32,7 +34,7 @@
             <tr v-for="item in cart.carts" :key="item.id">
               <td>{{ item.product.title }}</td>
               <td>{{ item.qty }} / {{ item.product.unit }}</td>
-              <td>{{ $filters.currency(item.final_total) }}</td>
+              <td>{{ $filters.currency(item.product.price * item.qty) }}</td>
               <td class="text-end">
                 <a href="#" @click.prevent="removeCartItem(item.id)">
                   <i class="bi bi-x-circle text-danger" style="font-size: 24px"></i>
@@ -48,7 +50,7 @@
           <tr>
             <td></td>
             <td></td>
-            <td class="fw-bold">總計</td>
+            <td class="fw-bold">總金額</td>
             <td class="text-end">{{ $filters.currency(cart.total) }}</td>
           </tr>
         </tfoot>
@@ -56,12 +58,14 @@
       <router-link to="/cartList" class="btn btn-primary d-block" v-if="cartLength > 0">前往結賬 <i class="bi bi-chevron-right"></i></router-link>
     </div>
   </div>
-  <div class="container mt-3 position-relative">
+  <div class="container position-relative">
     <Loading :active="isLoading"></Loading>
     <ToastMessages></ToastMessages>
     <router-view/>
   </div>
-  <footer>1234</footer>
+  <footer>
+    <div class="container">這是 footer</div>
+  </footer>
 </template>
 
 <script>

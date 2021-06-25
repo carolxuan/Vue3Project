@@ -55,19 +55,11 @@ export default {
     },
     addCart (id, qty) {
       this.$store.dispatch('cartModules/addCart', { id, qty })
+      this.$swal({
+        title: '加入購物車成功',
+        icon: 'success'
+      })
     }
-    // updateCart (item) {
-    //   const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-    //   const cart = {
-    //     product_id: item.product_id,
-    //     qty: item.qty
-    //   }
-    //   this.$http.put(url, { data: cart })
-    //     .then((res) => {
-    //       console.log(res)
-    //       this.getCart()
-    //     })
-    // }
   },
   computed: {
     ...mapGetters('cartModules', ['cart'])

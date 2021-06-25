@@ -64,6 +64,10 @@ export default {
     },
     addCart (id, qty = 1) {
       this.$store.dispatch('cartModules/addCart', { id, qty })
+      this.$swal({
+        title: '加入購物車成功',
+        icon: 'success'
+      })
     },
     removeCartItem (id) {
       this.$store.dispatch('cartModules/removeCartItem', id)

@@ -38,6 +38,40 @@ export default {
           context.dispatch('getCart')
           context.commit('LOADING', false, { root: true })
         })
+    },
+    minus (context, item) {
+      context.state.cart.carts.forEach(cartItem => {
+        if (item.product_id === cartItem.product_id) {
+          if (cartItem.qty > 1) {
+            context.commit('MINUS', cartItem)
+          }
+        }
+      })
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`
+      const cart = {
+        product_id: item.product_id,
+        qty: item.qty
+      }
+      axios.put(url, { data: cart })
+        .then(res => {
+          context.dispatch('getCart')
+        })
+    },
+    add (context, item) {
+      context.state.cart.carts.forEach(cartItem => {
+        if (item.product_id === cartItem.product_id) {
+          context.commit('ADD', cartItem)
+        }
+      })
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`
+      const cart = {
+        product_id: item.product_id,
+        qty: item.qty
+      }
+      axios.put(url, { data: cart })
+        .then(res => {
+          context.dispatch('getCart')
+        })
     }
   },
   mutations: {
@@ -46,6 +80,12 @@ export default {
     },
     CART_LENGTH (state, payload) {
       state.cartLength = payload
+    },
+    MINUS (state, payload) {
+      payload.qty -= 1
+    },
+    ADD (state, payload) {
+      payload.qty += 1
     }
   },
   getters: {
