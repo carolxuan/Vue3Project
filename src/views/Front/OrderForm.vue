@@ -14,45 +14,35 @@
     </li>
   </ul>
   <section class="order-form mb-7">
-    <div class="card-border mb-4">
-      <div class="order-form-title mb-3">
-        <h3 class="h5">選擇取貨方式</h3>
+    <Form action="" class="orderInfo-form" v-slot="{ errors }" @submit="createOrder">
+      <div class="card-border mb-4">
+        <div class="order-form-title mb-3">
+          <h3 class="h5">選擇取貨方式</h3>
+        </div>
+        <div class="form-check mb-3" v-for="take in takeOption" :key="take">
+          <Field class="form-check-input" type="radio" name="取貨方式" :id="take" :value="take" v-model="form.takeWay" rules="required" :class="{ 'is-invalid': errors['取貨方式'] }"></Field>
+          <label class="form-check-label" :for="take">
+            {{ take }}
+          </label>
+          <ErrorMessage name="取貨方式" class="invalid-feedback"></ErrorMessage>
+        </div>
       </div>
-      <div class="form-check mb-3">
-        <input class="form-check-input" type="radio" name="shoppingOption" id="takeWay">
-        <label class="form-check-label" for="takeWay">
-          到店自取
-        </label>
+      <div class="card-border mb-4">
+        <div class="order-form-title mb-3">
+          <h3 class="h5">選擇付款方式</h3>
+        </div>
+        <div class="form-check mb-3" v-for="pay in payOption" :key="pay">
+          <Field class="form-check-input" type="radio" name="付款方式" :id="pay" :value="pay" v-model="form.payMethod" rules="required" :class="{ 'is-invalid': errors['付款方式'] }"></Field>
+          <label class="form-check-label" :for="pay">
+            {{ pay }}
+          </label>
+          <ErrorMessage name="付款方式" class="invalid-feedback"></ErrorMessage>
+        </div>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="shoppingOption" id="delivery">
-        <label class="form-check-label" for="delivery">
-          外送
-        </label>
-      </div>
-    </div>
-    <div class="card-border mb-4">
-      <div class="order-form-title mb-3">
-        <h3 class="h5">選擇付款方式</h3>
-      </div>
-      <div class="form-check mb-3">
-        <input class="form-check-input" type="radio" name="payOption" id="payStore">
-        <label class="form-check-label" for="payStore">
-          到店付款取貨
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="payOption" id="linePay">
-        <label class="form-check-label" for="linePay">
-          LINE Pay
-        </label>
-      </div>
-    </div>
-    <div class="card-border mb-4">
-      <div class="order-form-title mb-3">
-        <h3 class="h5">訂購人資訊</h3>
-      </div>
-      <Form action="" class="orderInfo-form" v-slot="{ errors }" @submit="createOrder">
+      <div class="card-border">
+        <div class="order-form-title mb-3">
+          <h3 class="h5">訂購人資訊</h3>
+        </div>
         <div class="wrap">
           <div class="col-md-6 col-12 mb-3 pe-md-3 pe-0">
             <label for="customerName" class="form-label">姓名</label>
@@ -76,25 +66,31 @@
         </div>
         <div class="mb-3">
           <label for="customerEmail" class="form-label">E-mail</label>
-          <input
+          <Field
             type="text"
             class="form-control orderInfo-input"
             id="customerEmail"
-            name="信箱"
+            name="email"
             placeholder="請輸入 E-mail"
-          />
-          <p class="orderInfo-message" data-msg="信箱"></p>
+            :class="{ 'is-invalid': errors['email'] }"
+            rules="email|required"
+            v-model="form.user.email"
+          ></Field>
+          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <label for="customerAddress" class="form-label">地址</label>
-          <input
+          <Field
             type="text"
             class="form-control orderInfo-input"
             id="customerAddress"
             name="地址"
             placeholder="請輸入寄送地址"
-          />
-          <p class="orderInfo-message" data-msg="地址"></p>
+            :class="{ 'is-invalid': errors['地址'] }"
+            rules="required"
+            v-model="form.user.address"
+          ></Field>
+          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <label for="textarea" class="form-label">備註 (選填)</label>
@@ -103,18 +99,20 @@
             id="textarea"
             rows="3"
             name="備註"
+            v-model="form.message"
           ></textarea>
         </div>
-      </Form>
-    </div>
-    <div class="text-end">
-      <router-link to="/cartList" class="btn btn-secondary me-4">
-        <i class="bi bi-chevron-left"></i> 上一步
-      </router-link>
-      <router-link to="/orderForm" class="btn btn-primary">
-        下一步 <i class="bi bi-chevron-right"></i>
-      </router-link>
-    </div>
+      </div>
+      <div class="text-end">
+        <router-link to="/cartList" class="btn btn-secondary me-4">
+          <i class="bi bi-chevron-left"></i> 上一步
+        </router-link>
+        <!-- <router-link to="/orderForm" class="btn btn-primary">
+          下一步 <i class="bi bi-chevron-right"></i>
+        </router-link> -->
+        <button type="submit" class="btn btn-primary">下一步 <i class="bi bi-chevron-right"></i></button>
+      </div>
+    </Form>
   </section>
 </template>
 
@@ -124,9 +122,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      takeOption: ['到店自取', '外送'],
+      payOption: ['到店付款取貨', 'LINE Pay', '現金付款'],
       form: {
-        takeOption: '',
-        payOption: '',
+        takeWay: '',
+        payMethod: '',
         user: {
           name: '',
           email: '',
@@ -143,8 +143,15 @@ export default {
       const order = this.form
       this.$http.post(url, { data: order })
         .then(res => {
-          console.log(res)
+          if (res.data.success) {
+            console.log(res.data)
+            const orderId = res.data.orderId
+            this.getOrder(orderId)
+          }
         })
+    },
+    getOrder (orderId) {
+      this.$router.push(`/checkout/${orderId}`)
     },
     ...mapActions('cartModules', ['getCart'])
   },
