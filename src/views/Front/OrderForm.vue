@@ -16,7 +16,7 @@
   <section class="order-form mb-7">
     <Form action="" class="orderInfo-form" v-slot="{ errors }" @submit="createOrder">
       <div class="card-border mb-4">
-        <div class="order-form-title mb-3">
+        <div class="card-border-title mb-3">
           <h3 class="h5">選擇取貨方式</h3>
         </div>
         <div class="form-check mb-3" v-for="take in takeOption" :key="take">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="card-border mb-4">
-        <div class="order-form-title mb-3">
+        <div class="card-border-title mb-3">
           <h3 class="h5">選擇付款方式</h3>
         </div>
         <div class="form-check mb-3" v-for="pay in payOption" :key="pay">
@@ -39,8 +39,8 @@
           <ErrorMessage name="付款方式" class="invalid-feedback"></ErrorMessage>
         </div>
       </div>
-      <div class="card-border">
-        <div class="order-form-title mb-3">
+      <div class="card-border mb-4">
+        <div class="card-border-title mb-3">
           <h3 class="h5">訂購人資訊</h3>
         </div>
         <div class="wrap">
@@ -107,10 +107,7 @@
         <router-link to="/cartList" class="btn btn-secondary me-4">
           <i class="bi bi-chevron-left"></i> 上一步
         </router-link>
-        <!-- <router-link to="/orderForm" class="btn btn-primary">
-          下一步 <i class="bi bi-chevron-right"></i>
-        </router-link> -->
-        <button type="submit" class="btn btn-primary">下一步 <i class="bi bi-chevron-right"></i></button>
+        <button class="btn btn-primary">下一步 <i class="bi bi-chevron-right"></i></button>
       </div>
     </Form>
   </section>
@@ -144,14 +141,19 @@ export default {
       this.$http.post(url, { data: order })
         .then(res => {
           if (res.data.success) {
-            console.log(res.data)
             const orderId = res.data.orderId
-            this.getOrder(orderId)
+            this.$router.push(`/checkout/${orderId}`)
+            this.$swal({
+              title: '建立訂單成功',
+              icon: 'success'
+            })
+          } else {
+            this.$swal({
+              title: '購物車沒有商品',
+              icon: 'error'
+            })
           }
         })
-    },
-    getOrder (orderId) {
-      this.$router.push(`/checkout/${orderId}`)
     },
     ...mapActions('cartModules', ['getCart'])
   },

@@ -4,6 +4,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import './helpers/base';
 @import './helpers/grid';
+@import './components/card';
 @import './pages/layout';
 @import './pages/cartList';
 @import './pages/orderForm';
+@import './pages/checkout';

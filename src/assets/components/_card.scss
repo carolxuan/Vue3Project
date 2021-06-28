@@ -1,0 +1,15 @@
+.card-border {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  border-radius: 10px;
+  .card-border-title {
+    border-bottom: 2px solid $gray-700;
+    h3 {
+      display: inline-block;
+      background-color: $gray-700;
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 10px 10px 0 0;
+    }
+  }
+}
