@@ -18,12 +18,12 @@
           <td>{{ item.user.email }}</td>
           <td>
             <ul class="list-unstyled">
-              <li v-for="(product, key) in products" :key="key">
-                {{ product.product.title }} 數量 {{ product.qty }} {{ product.product.unit }}
+              <li v-for="(product, i) in item.products" :key="i">
+                {{ product.product.title }} / {{ product.qty }} {{ product.product.unit }}
               </li>
             </ul>
           </td>
-          <td class="text-end">{{ item.total }}</td>
+          <td>{{ $filters.currency(item.total) }}</td>
           <td>
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" :id="`paidSwitch${item.id}`" v-model="item.is_paid" @change="updatePaid(item)">
@@ -35,40 +35,47 @@
           </td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm">檢視</button>
-              <button class="btn btn-outline-danger btn-sm">刪除</button>
+              <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">檢視</button>
+              <button class="btn btn-outline-danger btn-sm" @click="delOrderModal(item)">刪除</button>
             </div>
           </td>
         </tr>
       </template>
     </tbody>
   </table>
+  <OrderModal :order="tempOrder" ref="orderModal"></OrderModal>
+  <DelModal :item="tempOrder" ref="delModal" @del-item="delOrder"></DelModal>
   <Pagination :pages="pagination" @emit-page="getOrders"></Pagination>
 </template>
 
 <script>
 import Pagination from '@/components/Pagination.vue'
+import DelModal from '@/components/DelModal.vue'
+import OrderModal from '@/components/OrderModal.vue'
 
 export default {
   data () {
     return {
       orders: {},
       pagination: {},
+      tempOrder: {},
       currentPage: 1,
       isLoading: false
     }
   },
   components: {
-    Pagination
+    Pagination,
+    DelModal,
+    OrderModal
   },
+  inject: ['emitter'],
   methods: {
-    getOders (currentPage = 1) {
+    getOrders (currentPage = 1) {
       this.currentPage = currentPage
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/?page=${currentPage}`
       this.isLoading = true
       this.$http.get(url)
         .then(res => {
-          console.log(res.data.orders)
           this.orders = res.data.orders
           this.pagination = res.data.pagination
           this.isLoading = false
@@ -83,13 +90,36 @@ export default {
       this.$http.put(url, { data: paid })
         .then(res => {
           this.isLoading = false
-          this.getOders(this.currentPage)
-          this.$httpMessageState(res, '更新付款狀態')
+          this.getOrders(this.currentPage)
+        })
+    },
+    openModal (isNew, item) {
+      this.tempOrder = { ...item }
+      this.isNew = false
+      const orderComponent = this.$refs.orderModal
+      orderComponent.showModal()
+    },
+    delOrderModal (item) {
+      this.tempOrder = { ...item }
+      const delComponent = this.$refs.delModal
+      delComponent.showModal()
+    },
+    delOrder () {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`
+      this.$http.delete(url)
+        .then(res => {
+          const delComponent = this.$refs.delModal
+          delComponent.hideModal()
+          this.getOrders(this.currentPage)
+          this.emitter.emit('push-message', {
+            style: 'success',
+            title: '刪除成功'
+          })
         })
     }
   },
   created () {
-    this.getOders()
+    this.getOrders()
   }
 }
 </script>

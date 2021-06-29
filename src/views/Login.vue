@@ -15,7 +15,7 @@
             v-model="user.username"
           />
         </div>
-        <div class="mb-2">
+        <div class="mb-4">
           <label for="inputPassword" class="sr-only">Password</label>
           <input
             type="password"
@@ -26,7 +26,8 @@
             v-model="user.password"
           />
         </div>
-        <div class="text-end mt-4">
+        <div class="d-flex justify-content-between">
+          <router-link to="/" class="text-gray4">回首頁</router-link>
           <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
         </div>
       </div>
@@ -52,7 +53,7 @@ export default {
           if (res.data.success) {
             const { token, expired } = res.data
             document.cookie = `myToken=${token}; expires=${new Date(expired)}`
-            this.$router.push('/dashboard/products')
+            this.$router.push('/admin/products')
           }
         })
     }

@@ -52,6 +52,10 @@ const routes = [
       {
         path: 'orders',
         component: () => import('../views/Admin/Orders.vue')
+      },
+      {
+        path: 'coupons',
+        component: () => import('../views/Admin/Coupons.vue')
       }
     ]
   }
@@ -59,6 +63,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
+  linkActiveClass: 'active',
   routes
 })
 

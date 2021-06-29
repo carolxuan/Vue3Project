@@ -9,6 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav">
             <router-link to="/cart" class="nav-link">產品列表</router-link>
+            <router-link to="/login" class="nav-link">登入</router-link>
           </div>
         </div>
       </div>
