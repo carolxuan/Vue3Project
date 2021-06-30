@@ -17,8 +17,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { currency, date } from './methods/filters'
+import $httpMsgState from './methods/pushMsgState'
 
 const app = createApp(App)
+
+app.config.globalProperties.$httpMsgState = $httpMsgState
 
 // sweetalert2
 const options = {

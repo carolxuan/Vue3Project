@@ -34,21 +34,25 @@
     </table>
     <CouponModal :coupon="tempCoupon" @update-coupon="updateCoupon" ref="couponModal"></CouponModal>
     <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"></DelModal>
+    <Pagination :pages="pagination" @emit-page="getCoupons"></Pagination>
   </div>
 </template>
 
 <script>
 import CouponModal from '@/components/CouponModal.vue'
 import DelModal from '@/components/DelModal.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   components: {
     CouponModal,
-    DelModal
+    DelModal,
+    Pagination
   },
   data () {
     return {
       coupons: {},
+      pagination: {},
       tempCoupon: {
         title: '',
         is_enabled: 0,
@@ -61,12 +65,13 @@ export default {
   },
   inject: ['emitter'],
   methods: {
-    getCoupons () {
+    getCoupons (currentPage = 1) {
       this.isLoading = true
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons`
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons/?page=${currentPage}`
       this.$http.get(url, this.tempCoupon)
         .then(res => {
           this.coupons = res.data.coupons
+          this.pagination = res.data.pagination
           this.isLoading = false
         })
     },
@@ -102,16 +107,9 @@ export default {
           this.$refs.couponModal.hideModal()
           if (res.data.success) {
             this.getCoupons()
-            this.emitter.emit('push-message', {
-              style: 'success',
-              title: '更新優惠券成功'
-            })
+            this.$httpMsgState(res, '更新')
           } else {
-            this.emitter.emit('push-message', {
-              style: 'danger',
-              title: '更新優惠券失敗',
-              content: res.data.message.join('、')
-            })
+            this.$httpMsgState(res, '更新')
           }
         })
     },
@@ -120,12 +118,9 @@ export default {
       this.isLoading = true
       this.$http.delete(url)
         .then((res) => {
-          this.emitter.emit('push-message', {
-            style: 'success',
-            title: '刪除優惠卷成功'
-          })
+          this.$httpMsgState(res, '刪除')
           this.$refs.delModal.hideModal()
-          this.getCoupons()
+          this.getCoupons(this.currentPage)
         })
     }
   },

@@ -111,10 +111,7 @@ export default {
           const delComponent = this.$refs.delModal
           delComponent.hideModal()
           this.getOrders(this.currentPage)
-          this.emitter.emit('push-message', {
-            style: 'success',
-            title: '刪除成功'
-          })
+          this.$httpMsgState(res, '刪除訂單')
         })
     }
   },

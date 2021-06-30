@@ -38,7 +38,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" @click="$emit('update-coupon', tempCoupon)">更新優惠券</button>
+          <button type="button" class="btn btn-primary" @click="$emit('update-coupon', tempCoupon)">確定</button>
         </div>
       </div>
     </div>

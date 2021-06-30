@@ -105,16 +105,9 @@ export default {
           productComponent.hideModal()
           if (res.data.success) {
             this.getProducts()
-            this.emitter.emit('push-message', {
-              style: 'success',
-              title: '更新成功'
-            })
+            this.$httpMsgState(res, '更新產品')
           } else {
-            this.emitter.emit('push-message', {
-              style: 'danger',
-              title: '更新失敗',
-              content: res.data.message.join('、')
-            })
+            this.$httpMsgState(res, '更新產品')
           }
         })
     },
@@ -132,10 +125,7 @@ export default {
           delComponent.hideModal()
           this.getProducts()
           this.isLoading = false
-          this.emitter.emit('push-message', {
-            style: 'success',
-            title: '刪除成功'
-          })
+          this.$httpMsgState(res, '刪除產品')
         })
     }
   },
