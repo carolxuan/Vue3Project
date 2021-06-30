@@ -86,6 +86,10 @@
                     <td class="text-end">
                       {{ $filters.currency(item.final_total) }}
                     </td>
+                    <td v-if="item.coupon" class="text-success">
+                      使用優惠卷：{{ item.coupon.code }}
+                    </td>
+                    <td v-else>無使用優惠卷</td>
                   </tr>
                 </tbody>
               </table>

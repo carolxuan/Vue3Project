@@ -52,7 +52,9 @@
                 </button>
               </td>
               <td class="text-end">{{ $filters.currency(item.product.price) }}</td>
-              <td class="text-end">NT ${{ $filters.currency(item.product.price * item.qty) }}</td>
+              <td class="text-end">
+                NT ${{ $filters.currency(item.product.price * item.qty) }}
+              </td>
             </tr>
           </template>
         </tbody>
@@ -61,13 +63,19 @@
             <td colspan="2"><a href="#" class="btn btn-outline-primary" @click.prevent="removeCartAll(cartLength)">刪除全部</a></td>
             <td colspan="3" class="text-end">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="請輸入優惠卷" aria-label="coupons-btn" aria-describedby="coupons-btn">
-                <button class="btn btn-outline-primary" type="button" id="coupons-btn">套用</button>
+                <input type="text" class="form-control" placeholder="請輸入優惠卷" aria-label="coupons-btn" aria-describedby="coupons-btn" v-model="coupon_code">
+                <button class="btn btn-outline-primary" type="button" id="coupons-btn" @click="addCoupon">套用</button>
               </div>
             </td>
           </tr>
           <tr>
-            <td colspan="5" class="text-end display-10 fw-bold">總金額 NT ${{ $filters.currency(cart.total) }}</td>
+            <td colspan="5" class="text-end">
+              <del v-if="cart.final_total !== cart.total">總金額 NT ${{ $filters.currency(cart.total) }}</del>
+              <p v-else class="display-10 fw-bold">總金額 NT ${{ $filters.currency(cart.total) }}</p>
+            </td>
+          </tr>
+          <tr v-if="cart.final_total !== cart.total">
+            <td colspan="5" class="text-end text-danger display-10 fw-bold">折扣後總金額 NT ${{ $filters.currency(cart.final_total) }}</td>
           </tr>
           <tr>
             <td colspan="5" class="next-btn text-end">
@@ -89,7 +97,34 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  data () {
+    return {
+      coupon_code: ''
+    }
+  },
   methods: {
+    addCoupon () {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/coupon`
+      const coupon = {
+        code: this.coupon_code
+      }
+      this.$http.post(url, { data: coupon })
+        .then(res => {
+          if (res.data.success) {
+            this.getCart()
+            this.coupon_code = ''
+            this.$swal({
+              title: '已套用優惠卷',
+              icon: 'success'
+            })
+          } else {
+            this.$swal({
+              title: '找不到優惠卷',
+              icon: 'error'
+            })
+          }
+        })
+    },
     removeCartAll (len) {
       if (len < 1) {
         this.$swal({
