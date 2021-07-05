@@ -1,11 +1,13 @@
 /* 全站設定
 -------------------------------------------------- */
 /* 全域 border box */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
+
 body {
   color: #000;
   overflow-x: hidden !important;
   -ms-overflow-style: none;
-  font-family: 'Merriweather', Arial, sans-serif, serif;
+  font-family: 'Roboto Mono', 'Noto Sans TC', sans-serif, serif;
   &::-webkit-scrollbar {
     display: none;
   }

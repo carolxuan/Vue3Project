@@ -1,6 +1,6 @@
 <template>
   <HomeSwiper class="banner"></HomeSwiper>
-  <section class="discount mb-6">
+  <section class="discount mb-8 mb-md-12">
     <div class="wrap align-items-center justify-content-around">
       <div class="discount-top d-flex align-items-center">
         <img src="../../assets/images/discount-img.svg">
@@ -12,7 +12,7 @@
       </div>
     </div>
   </section>
-  <section class="advantage bg-grayf8 mb-6">
+  <section class="advantage bg-grayf8 mb-8 mb-md-12">
     <h2 class="text-center mb-6">我們的堅持</h2>
     <ul class="advantage-item wrap justify-content-center">
       <li>
@@ -37,9 +37,46 @@
       </li>
     </ul>
   </section>
-  <section class="product mb-6">
+  <section class="product mb-8 mb-md-12">
     <h2 class="text-center mb-5">熱門商品</h2>
     <ProductSwiper></ProductSwiper>
+  </section>
+  <section class="contact bg-grayf8 mb-8 mb-md-12">
+    <div class="wrap align-items-center justify-content-center">
+      <div class="contact-txt">
+        <h2 class="mb-3">聯絡我們</h2>
+        <ul>
+          <li class="mb-3"><span>信箱</span>leqi1688@gmail.com</li>
+          <li class="mb-3"><span>電話</span>04-22456799></li>
+          <li class="mb-4"><span>地址</span>台中市北屯區遼寧路一段376號</li>
+          <li class="mb-2">更多資訊，歡迎加入我們 Line 官方帳號</li>
+          <li>
+            <a href="javascript:void(0)">
+              <img src="../../assets/images/lineBtn.svg" style="width: 120px">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="contact-form">
+        <form action="" class="user-form">
+          <div class="form-group mb-3">
+            <label for="userName" class="form-label">您的姓名</label>
+            <input type="name" class="form-control" id="userName" aria-describedby="namelHelp" placeholder="輸入姓名">
+          </div>
+          <div class="form-group mb-3">
+            <label for="userEmail" class="form-label">您的信箱</label>
+            <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="輸入信箱">
+          </div>
+          <div class="mb-3">
+            <label for="textarea" class="form-label">留言</label>
+            <textarea class="form-control" id="textarea" rows="3" name="備註"></textarea>
+          </div>
+          <div class="text-center">
+            <a href="#" class="l-btn btn--md btn--primary">送出</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </section>
 </template>
 

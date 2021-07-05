@@ -48,7 +48,7 @@ $theme-colors: map-merge(
     'gray5': $gray-500,
     'grayf8': $gray-f8,
     'danger': $red,
-    'success':#E6E51E,
+    'success':$green,
     'purple': $purple,
   ),
   $theme-colors
@@ -93,6 +93,9 @@ $spacers: map-merge(
     ),
     11: (
       $spacer * 5,
+    ),
+    12: (
+      $spacer * 5.25,
     ),
   ),
   $spacers

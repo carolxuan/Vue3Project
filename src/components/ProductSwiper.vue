@@ -153,8 +153,6 @@ export default {
   }
   .inSwiperBox {
     position: initial;
-  }
-  .swiper-container {
     padding-bottom: 30px;
   }
   .swiper-button-next {

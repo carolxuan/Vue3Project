@@ -34,7 +34,10 @@
 }
 
 .banner{
-  margin-bottom: 120px;
+  margin-bottom: 114px;
+  @include pad() {
+    margin-bottom: 90px;
+  }
 }
 
 .discount {
@@ -62,16 +65,16 @@
       margin-bottom: 24px;
     }
   }
-  .discount-code {
-    p {
-      padding: 16px 28px;
-      height: 56px;
-      @include apple6() {
-        padding: 16px 20px;
-      }
-      @include apple5() {
-        padding: 16px 12px;
-      }
+}
+.discount-code {
+  p {
+    padding: 16px 28px;
+    height: 56px;
+    @include apple6() {
+      padding: 16px 20px;
+    }
+    @include apple5() {
+      padding: 16px 12px;
     }
   }
 }
@@ -114,6 +117,47 @@
     border-radius: 10px;
     img {
       border-radius: 10px 10px 0 0;
+    }
+  }
+}
+
+.contact {
+  border-radius: 10px;
+  padding: 64px;
+  @include mobile480() {
+    padding: 48px 18px;
+  }
+  span {
+    padding-right: 16px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .contact-txt {
+    width: 40%;
+    @include largeDesktops() {
+      width: 50%;
+      padding-right: 24px;
+    }
+    @include pad() {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 40px;
+    }
+  }
+  .contact-form {
+    width: 30%;
+    background-color: #fff;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    padding: 36px;
+    border-radius: 10px;
+    @include largeDesktops() {
+      width: 50%;
+    }
+    @include pad() {
+      width: 100%;
+    }
+    @include mobile480() {
+      padding: 24px 18px;
     }
   }
 }

@@ -70,9 +70,9 @@
       <router-link to="/login" class="text-dark px-3">登入</router-link>
     </div>
     <ul class="d-flex justify-content-center mb-3">
-      <li class="px-2"><a href="#"><img src="../assets/images/icon-line.svg"></a></li>
-      <li class="px-2"><a href="#"><img src="../assets/images/icon-fb.svg"></a></li>
-      <li class="px-2"><a href="#"><img src="../assets/images/icon-ig.svg"></a></li>
+      <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-line.svg"></a></li>
+      <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-fb.svg"></a></li>
+      <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-ig.svg"></a></li>
     </ul>
     <p class="text-center">ⓒ Copyright 2021 Practice 非商業用途</p>
   </footer>
