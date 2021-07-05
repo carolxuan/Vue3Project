@@ -1,3 +1,23 @@
+// header
+.navbar-collapse {
+  padding: 16px;
+}
+@media (max-width: 991px) {
+  .navbar-collapse {
+    box-shadow: 0 3px 5px rgba(0,0,0,.1);
+  }
+}
+.navbar-toggler {
+  @include Desktops() {
+    margin-right: 16px;
+  }
+}
+.logo{
+  @include Desktops() {
+    margin-left: 16px;
+  }
+}
+// 浮動購物車
 .dropstart .dropdown-toggle::before {
   content:'';
   display: none;
@@ -8,9 +28,13 @@
 }
 .float-icon {
   position: fixed;
-  right: 24px;
-  bottom: 32px;
+  right: 36px;
+  top: 20px;
   z-index: 99;
+  @include Desktops() {
+    right: 16px;
+    top: 75px;
+  }
   button {
     border-radius: 50%;
     width: 50px;

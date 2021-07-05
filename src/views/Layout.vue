@@ -1,23 +1,23 @@
 <template>
-  <header class="mb-8">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">LOGO</a>
+  <header>
+    <div class="content-inner">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand logo" href="#"><img src="../assets/images/logo.svg" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav">
-            <router-link to="/cart" class="nav-link">產品列表</router-link>
-            <router-link to="/login" class="nav-link">登入</router-link>
+            <router-link to="/cart" class="nav-link text-dark">購物專區</router-link>
+            <router-link to="/login" class="nav-link text-dark">登入</router-link>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
   <div class="float-icon btn-group dropup">
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-bag-plus-fill" style="font-size: 24px"></i>
+    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-cart-fill" style="font-size: 24px"></i>
       <span class="badge bg-danger">{{ cartLength }}</span>
     </button>
     <div class="dropdown-menu dropdown-cart-menu">
@@ -64,8 +64,17 @@
     <ToastMessages></ToastMessages>
     <router-view/>
   </div>
-  <footer>
-    <div class="container">這是 footer</div>
+  <footer class="bg-success pt-6 pb-4">
+    <div class="wrap justify-content-center mb-3">
+      <router-link to="/cart" class="text-dark px-3">購物專區</router-link>
+      <router-link to="/login" class="text-dark px-3">登入</router-link>
+    </div>
+    <ul class="d-flex justify-content-center mb-3">
+      <li class="px-2"><a href="#"><img src="../assets/images/icon-line.svg"></a></li>
+      <li class="px-2"><a href="#"><img src="../assets/images/icon-fb.svg"></a></li>
+      <li class="px-2"><a href="#"><img src="../assets/images/icon-ig.svg"></a></li>
+    </ul>
+    <p class="text-center">ⓒ Copyright 2021 Practice 非商業用途</p>
   </footer>
 </template>
 

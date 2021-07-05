@@ -97,9 +97,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">關閉
-          </button>
-          <!-- <button type="button" class="btn btn-primary" @click="$emit('update-order', tempOrder)">確認</button> -->
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>

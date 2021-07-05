@@ -1,0 +1,119 @@
+.banner-bg {
+  height: 710px;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  position: relative;
+  @include pad() {
+    height: 600px;
+  }
+}
+.bg-1 {
+  background-position: center !important;
+  background: url('~@/assets/images/banner01.png');
+}
+.bg-2 {
+  background-position: center left !important;
+  background: url('~@/assets/images/banner02.png');
+}
+.banner-inner-1 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.banner-inner-2 {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 36px;
+}
+@include pad() {
+  .bg-text {
+    color: #fff;
+    text-shadow: black 1px 1px 2px;
+  }
+}
+
+.banner{
+  margin-bottom: 120px;
+}
+
+.discount {
+  background-color: $purple;
+  padding: 32px 48px;
+  border-radius: 10px;
+  img {
+    margin: -70px 36px 24px 0;
+    width: 200px;
+    @include apple() {
+      width: 140px;
+    }
+    @include appleX() {
+      width: 110px;
+    }
+    @include apple5() {
+      display: none;
+    }
+  }
+  .discount-top{
+    p {
+      line-height: 36px;
+    }
+    @include apple() {
+      margin-bottom: 24px;
+    }
+  }
+  .discount-code {
+    p {
+      padding: 16px 28px;
+      height: 56px;
+      @include apple6() {
+        padding: 16px 20px;
+      }
+      @include apple5() {
+        padding: 16px 12px;
+      }
+    }
+  }
+}
+
+.advantage{
+  border-radius: 10px;
+  padding: 64px 16px;
+  .advantage-item {
+    li {
+      width: 18%;
+      text-align: center;
+      margin: 0 8px;
+      @include Desktops() {
+        width: 20%;
+      }
+      @include pad() {
+        width: 46%;
+        margin: 16px 8px;
+      }
+      @include appleX() {
+        width: 100%;
+      }
+    }
+  }
+  img {
+    width: 100px;
+    min-height: 140px;
+  }
+  .advantage-txt {
+    display: inline-block;
+    background-color: $success;
+    padding: 8px 48px;
+    border-radius: 10px;
+  }
+}
+
+.product {
+  .product-card {
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    img {
+      border-radius: 10px 10px 0 0;
+    }
+  }
+}
