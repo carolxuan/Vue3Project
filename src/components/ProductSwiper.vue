@@ -1,6 +1,6 @@
 <template>
   <div class="outSwiperBox">
-    <swiper :slidesPerView="4" :loop="true" :navigation="true" :breakpoints='{
+    <swiper :slidesPerView="4" :loop="true" :autoplay='{ "delay": 2000, "disableOnInteraction": false }' :pagination='{ "clickable": true }' :speed="300" :breakpoints='{
       "0": {
         "slidesPerView": 1,
         "spaceBetween": 0
@@ -15,111 +15,21 @@
       },
       "1024": {
         "slidesPerView": 4,
-        "spaceBetween": 30
+        "spaceBetween": 24
       }
     }' class="inSwiperBox mySwiper">
-      <swiper-slide>
+      <swiper-slide v-for="item in hotProducts" :key="item.id">
         <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
+          <router-link :to='`/product/${item.id}`'>
+            <img :src="item.imageUrl" class="mb-3">
+          </router-link>
           <div class="px-3">
-            <h4 class="mb-2">樂煮蔬菜箱</h4>
+            <h4 class="mb-2">{{ item.title }}</h4>
             <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
+              <del>NT ${{ $filters.currency(item.origin_price) }}</del>
+              <p class="fw-bold">NT ${{ $filters.currency(item.price) }}</p>
             </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
-          <div class="px-3">
-            <h4 class="mb-2">樂煮蔬菜箱</h4>
-            <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
-            </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
-          <div class="px-3">
-            <h4 class="mb-2">樂煮蔬菜箱</h4>
-            <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
-            </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
-          <div class="px-3">
-            <h4 class="mb-2">1樂煮蔬菜箱</h4>
-            <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
-            </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
-          <div class="px-3">
-            <h4 class="mb-2">2樂煮蔬菜箱</h4>
-            <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
-            </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
-          <div class="px-3">
-            <h4 class="mb-2">3樂煮蔬菜箱</h4>
-            <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
-            </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="product-card">
-          <a href="#">
-            <img src="../assets/images/p-1.jpeg" class="mb-3">
-          </a>
-          <div class="px-3">
-            <h4 class="mb-2">4樂煮蔬菜箱</h4>
-            <div class="d-flex justify-content-between mb-3">
-              <del>NT $450</del>
-              <p>NT $390</p>
-            </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3">加入購物車</a>
+            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3" @click.prevent="buyNow(item.id)">加入購物車</a>
           </div>
         </div>
       </swiper-slide>
@@ -128,13 +38,14 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.scss'
-import 'swiper/components/navigation/navigation.min.css'
+import 'swiper/components/pagination/pagination.min.css'
 import SwiperCore, {
-  Navigation
+  Autoplay, Pagination
 } from 'swiper/core'
-SwiperCore.use([Navigation])
+SwiperCore.use([Autoplay, Pagination])
 
 export default {
   components: {
@@ -143,6 +54,25 @@ export default {
   },
   data () {
     return {}
+  },
+  computed: {
+    hotProducts () {
+      return this.products.filter((item) => item.category === '熱門商品')
+    },
+    ...mapGetters('productsModules', ['products', 'categories'])
+  },
+  methods: {
+    buyNow (id, qty = 1) {
+      this.$store.dispatch('cartModules/addCart', { id, qty })
+      this.$swal({
+        title: '加入購物車成功',
+        icon: 'success'
+      })
+    },
+    ...mapActions('productsModules', ['getProducts'])
+  },
+  created () {
+    this.getProducts()
   }
 }
 </script>
@@ -153,9 +83,9 @@ export default {
   }
   .inSwiperBox {
     position: initial;
-    padding-bottom: 30px;
+    padding-bottom: 60px;
   }
-  .swiper-button-next {
+  /* .swiper-button-next {
     right: 0;
   }
   .swiper-button-prev {
@@ -168,5 +98,5 @@ export default {
   }
   .swiper-button-next:after, .swiper-button-prev:after {
     font-size: 24px;
-  }
+  } */
 </style>

@@ -115,8 +115,16 @@
   .product-card {
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    max-width: 280px;
+    @include mobile480() {
+      margin: 0 auto;
+    }
     img {
       border-radius: 10px 10px 0 0;
+      height: 160px;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
     }
   }
 }
