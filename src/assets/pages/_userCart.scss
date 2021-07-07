@@ -20,6 +20,8 @@
 }
 
 .side-menu {
+  position: sticky;
+  top: 0;
   ul {
     @include pad() {
       display: flex;
@@ -48,7 +50,7 @@
 
 .product-wrap {
   li {
-    width: 28%;
+    width: 30%;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin: 10px;

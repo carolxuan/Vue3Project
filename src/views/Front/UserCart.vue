@@ -16,16 +16,14 @@
       <div class="col-md-3">
         <div class="side-menu">
           <ul>
-            <li class="active">全部品項</li>
-            <li>蔬菜</li>
-            <li>海鮮</li>
-            <li>水果</li>
+            <li @click="filterText = ''" :class="{ 'active': filterText === '' }">全部產品</li>
+            <li v-for="item in categories" :key="item" @click="filterText = item" :class="{ 'active': item === filterText }">{{ item }}</li>
           </ul>
         </div>
       </div>
       <div class="col-md-9">
-        <ul class="product-wrap wrap">
-          <li v-for="item in products" :key="item.id">
+        <ul class="product-wrap wrap mb-4">
+          <li v-for="item in filterProducts" :key="item.id">
             <a href="#" @click.prevent="getProduct(item.id)">
               <img :src="item.imageUrl" class="mb-3">
             </a>
@@ -39,6 +37,7 @@
             </div>
           </li>
         </ul>
+        <Pagination :pages="pagination" @emit-page="getAllProducts" v-if="filterText===''"></Pagination>
       </div>
     </div>
   </section>
@@ -46,14 +45,22 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   data () {
     return {
-      product: {}
+      product: {},
+      filterText: ''
     }
   },
+  components: {
+    Pagination
+  },
   methods: {
+    getAllProducts (page = 1) {
+      this.$store.dispatch('productsModules/getAllProducts', page)
+    },
     getProduct (id) {
       this.$router.push(`/product/${id}`)
     },
@@ -71,11 +78,20 @@ export default {
     ...mapActions('cartModules', ['getCart'])
   },
   computed: {
-    ...mapGetters('productsModules', ['products']),
+    filterProducts () {
+      if (this.filterText === '') {
+        return this.allProducts
+      }
+      return this.products.filter(
+        (item) => item.category === this.filterText
+      )
+    },
+    ...mapGetters('productsModules', ['products', 'categories', 'allProducts', 'pagination']),
     ...mapGetters('cartModules', ['cart'])
   },
   created () {
     this.getProducts()
+    this.getAllProducts()
     this.getCart()
   }
 }
