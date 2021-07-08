@@ -1,5 +1,5 @@
 <template>
-  <swiper :spaceBetween="30" :autoplay='{ "delay": 2500, "disableOnInteraction": false }' :pagination='{ "clickable": true }' :speed="600" :parallax="true" class="mySwiper">
+  <swiper :spaceBetween="30" :autoplay='{ "delay": 1500, "disableOnInteraction": false }' :pagination='{ "clickable": true }' :speed="600" :parallax="true" class="mySwiper">
     <swiper-slide>
       <div class="banner-bg bg-1 parallax-bg" data-swiper-parallax="-23%"></div>
       <div class="banner-inner-1 position-absolute">

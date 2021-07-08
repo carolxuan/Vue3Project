@@ -1,0 +1,13 @@
+.userProduct-img {
+  img {
+    width: 700px;
+    height: 540px;
+    object-fit: cover;
+    @include pad() {
+      height: 360px;
+    }
+    @include mobile480() {
+      height: 280px;
+    }
+  }
+}

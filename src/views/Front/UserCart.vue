@@ -16,7 +16,7 @@
       <div class="col-md-3">
         <div class="side-menu">
           <ul>
-            <li @click="filterText = ''" :class="{ 'active': filterText === '' }">全部產品</li>
+            <li @click="filterText = ''" :class="{ 'active': filterText === '' }">全部商品</li>
             <li v-for="item in categories" :key="item" @click="filterText = item" :class="{ 'active': item === filterText }">{{ item }}</li>
           </ul>
         </div>
@@ -82,9 +82,7 @@ export default {
       if (this.filterText === '') {
         return this.allProducts
       }
-      return this.products.filter(
-        (item) => item.category === this.filterText
-      )
+      return this.products.filter(item => item.category === this.filterText)
     },
     ...mapGetters('productsModules', ['products', 'categories', 'allProducts', 'pagination']),
     ...mapGetters('cartModules', ['cart'])

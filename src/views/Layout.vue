@@ -74,7 +74,7 @@
       <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-fb.svg"></a></li>
       <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-ig.svg"></a></li>
     </ul>
-    <p class="text-center">ⓒ Copyright 2021 Practice 非商業用途</p>
+    <p class="text-center">ⓒ Copyright 2021 練習使用非商業用途</p>
   </footer>
 </template>
 
