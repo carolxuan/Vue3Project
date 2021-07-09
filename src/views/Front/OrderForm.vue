@@ -104,10 +104,11 @@
         </div>
       </div>
       <div class="text-end">
-        <router-link to="/cartList" class="btn btn-secondary me-4">
+        <p class="text-danger mb-4 fw-bold">請確認所填寫的資料是否正確，下單後未提供修改付款方式服務。</p>
+        <router-link to="/cartList" class="l-btn btn--secondary btn--md me-4">
           <i class="bi bi-chevron-left"></i> 上一步
         </router-link>
-        <button class="btn btn-primary">下一步 <i class="bi bi-chevron-right"></i></button>
+        <button class="l-btn btn--primary btn--md">下一步 <i class="bi bi-chevron-right"></i></button>
       </div>
     </Form>
   </section>
@@ -119,8 +120,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      takeOption: ['到店自取', '外送'],
-      payOption: ['到店付款取貨', 'LINE Pay', '現金付款'],
+      takeOption: ['到店自取', '宅配'],
+      payOption: ['取貨付款', 'LINE Pay', '信用卡'],
       form: {
         takeWay: '',
         payMethod: '',

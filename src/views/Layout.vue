@@ -21,42 +21,38 @@
       <span class="badge bg-danger">{{ cartLength }}</span>
     </button>
     <div class="dropdown-menu dropdown-cart-menu">
-      <table class="table table-sm">
-        <thead>
-          <tr>
-            <th>品項</th>
-            <th>數量</th>
-            <th>小計</th>
-            <th></th>
-          </tr>
-        </thead>
+      <table class="table table-sm mb-0">
         <tbody>
           <template v-if="cart.carts">
             <tr v-for="item in cart.carts" :key="item.id">
-              <td>{{ item.product.title }}</td>
-              <td>{{ item.qty }} / {{ item.product.unit }}</td>
-              <td>{{ $filters.currency(item.product.price * item.qty) }}</td>
-              <td class="text-end">
+              <td class="td-css"><img :src="item.product.imageUrl" :alt="item.product.title"></td>
+              <td class="td-css">{{ item.product.title }}</td>
+              <td class="td-css">{{ item.qty }} / {{ item.product.unit }}</td>
+              <td class="td-css">{{ $filters.currency(item.product.price * item.qty) }}</td>
+              <td class="td-css text-end">
                 <a href="#" @click.prevent="removeCartItem(item.id)">
                   <i class="bi bi-x-circle text-danger" style="font-size: 24px"></i>
                 </a>
               </td>
             </tr>
             <tr v-if="cartLength < 1">
-              <td class="text-center" colspan="4"><h5>購物車是空的</h5></td>
+              <td class="text-center py-4 px-4" colspan="5"><h5>購物車是空的</h5></td>
             </tr>
           </template>
         </tbody>
         <tfoot>
           <tr>
-            <td></td>
-            <td></td>
-            <td class="fw-bold">總金額</td>
-            <td class="text-end">{{ $filters.currency(cart.total) }}</td>
+            <td colspan="2"></td>
+            <td colspan="2" class="fw-bold">總金額</td>
+            <td class="text-end fw-bold display-10">{{ $filters.currency(cart.total) }}</td>
+          </tr>
+          <tr class="bg-gray2">
+            <td colspan="5" class="px-3 py-3 text-center" v-if="cartLength > 0">
+              <router-link to="/cartList" class="l-btn btn--primary btn--md w-100">前往結賬 <i class="bi bi-chevron-right"></i></router-link>
+            </td>
           </tr>
         </tfoot>
       </table>
-      <router-link to="/cartList" class="btn btn-primary d-block" v-if="cartLength > 0">前往結賬 <i class="bi bi-chevron-right"></i></router-link>
     </div>
   </div>
   <div class="container position-relative">

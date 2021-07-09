@@ -66,17 +66,17 @@
               <td v-else>無</td>
             </tr>
             <tr>
-              <td class="td-css">付款狀態</td>
+              <td class="td-css">訂單狀態</td>
               <td>
-                <span v-if="!order.is_paid">尚未付款</span>
-                <span v-else class="text-success">付款完成</span>
+                <span v-if="!order.is_paid">尚未完成訂單</span>
+                <span v-else class="text-danger">訂單成立</span>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="text-end" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認，付款去 <i class="bi bi-chevron-right"></i></button>
+        <button class="btn btn-danger">確認，送出訂單 <i class="bi bi-chevron-right"></i></button>
       </div>
     </form>
   </section>
