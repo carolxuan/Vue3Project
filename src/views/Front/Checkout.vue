@@ -76,7 +76,7 @@
         </table>
       </div>
       <div class="text-end" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認，送出訂單 <i class="bi bi-chevron-right"></i></button>
+        <button class="l-btn btn--primary btn--lg">確認，送出訂單 <i class="bi bi-chevron-right"></i></button>
       </div>
     </form>
   </section>

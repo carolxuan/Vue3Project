@@ -58,23 +58,25 @@
         </ul>
       </div>
       <div class="contact-form">
-        <form action="" class="user-form">
+        <Form action="" class="user-form" v-slot="{ errors }" @submit="sendOut">
           <div class="form-group mb-3">
             <label for="userName" class="form-label">您的姓名</label>
-            <input type="name" class="form-control" id="userName" aria-describedby="namelHelp" placeholder="輸入姓名">
+            <Field type="text" name="姓名" class="form-control" id="userName" aria-describedby="namelHelp" placeholder="輸入姓名" rules="required" :class="{ 'is-invalid': errors['姓名'] }" v-model="form.name"></Field>
+            <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
           </div>
           <div class="form-group mb-3">
             <label for="userEmail" class="form-label">您的信箱</label>
-            <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="輸入信箱">
+            <Field type="email" name="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="輸入信箱" :class="{ 'is-invalid': errors['email'] }" rules="email|required" v-model="form.email"></Field>
+            <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
           </div>
           <div class="mb-3">
             <label for="textarea" class="form-label">留言</label>
-            <textarea class="form-control" id="textarea" rows="3" name="備註"></textarea>
+            <textarea class="form-control" id="textarea" rows="3" name="備註" v-model="form.msg"></textarea>
           </div>
           <div class="text-center">
-            <a href="#" class="l-btn btn--md btn--primary">送出</a>
+            <button type="submit" class="l-btn btn--md btn--primary">送出</button>
           </div>
-        </form>
+        </Form>
       </div>
     </div>
   </section>
@@ -88,6 +90,27 @@ export default {
   components: {
     HomeSwiper,
     ProductSwiper
+  },
+  data () {
+    return {
+      form: {
+        name: '',
+        email: '',
+        msg: ''
+      }
+    }
+  },
+  methods: {
+    sendOut (values, { resetForm }) {
+      if (values) {
+        this.$swal({
+          title: '送出成功',
+          icon: 'success'
+        })
+        resetForm()
+      }
+      this.form.msg = ''
+    }
   }
 }
 </script>

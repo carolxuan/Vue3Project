@@ -49,7 +49,6 @@ export default {
           this.$store.dispatch('updateLoading', false)
           if (res.data.success) {
             this.product = res.data.product
-            console.log(this.product)
           }
         })
     },
