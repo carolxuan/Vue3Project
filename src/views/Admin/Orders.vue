@@ -1,7 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
   <h3 class="fw-bold"><i class="bi bi-clock"></i> 最近訂單</h3>
-  <hr>
   <div class="overflow-wrap mb-6">
     <table class="table-css mt-4">
       <thead>
@@ -38,8 +37,8 @@
             </td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">檢視</button>
-                <button class="btn btn-outline-danger btn-sm" @click="delOrderModal(item)">刪除</button>
+                <button class="l-btn btn--primary btn-sm" @click="openModal(false, item)">檢視</button>
+                <button class="l-btn btn--secondary btn-sm" @click="delOrderModal(item)">刪除</button>
               </div>
             </td>
           </tr>
@@ -82,7 +81,6 @@ export default {
         .then(res => {
           this.orders = res.data.orders
           this.pagination = res.data.pagination
-          console.log(this.orders)
           this.isLoading = false
         })
     },

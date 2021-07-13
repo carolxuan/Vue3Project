@@ -1,0 +1,17 @@
+.coupons-card {
+  li {
+    width: 47%;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: 150px;
+    margin: 16px 10px;
+    padding: 16px 24px;
+    @include extraDesktops() {
+      width: 100%;
+    }
+    @include mobile480() {
+      display: block !important;
+      height: auto;
+    }
+  }
+}

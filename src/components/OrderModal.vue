@@ -1,17 +1,16 @@
 <template>
   <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
        aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-md" role="document">
       <div class="modal-content border-0">
-        <div class="modal-header bg-dark text-white">
+        <div class="modal-header bg-primary text-white">
           <h5 class="modal-title" id="exampleModalLabel">
-            <span>訂單細節</span>
+            <span>訂單編號：</span><span>{{ tempOrder.id }}</span>
           </h5>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-4">
-              <h3>用戶資料</h3>
+            <div class="mb-5">
+              <h3 class="display-10 fw-bold mb-2">用戶資料</h3>
               <table class="table">
                 <tbody v-if="tempOrder.user">
                   <tr>
@@ -33,14 +32,10 @@
                 </tbody>
               </table>
             </div>
-            <div class="col-md-8">
-              <h3>訂單細節</h3>
+            <div class="mb-5">
+              <h3 class="display-10 fw-bold mb-2">訂單細節</h3>
               <table class="table">
                 <tbody>
-                  <tr>
-                    <th style="width: 100px">訂單編號</th>
-                    <td>{{ tempOrder.id }}</td>
-                  </tr>
                   <tr>
                     <th>下單時間</th>
                     <td>{{ $filters.date(tempOrder.create_at)}}</td>
@@ -57,7 +52,7 @@
                   <tr>
                     <th>付款狀態</th>
                     <td>
-                      <strong v-if="tempOrder.is_paid" class="text-success">已付款</strong>
+                      <strong v-if="tempOrder.is_paid" class="text-danger">已付款</strong>
                       <span v-else class="text-muted">尚未付款</span>
                     </td>
                   </tr>
@@ -69,7 +64,9 @@
                   </tr>
                 </tbody>
               </table>
-              <h3>選購商品</h3>
+            </div>
+            <div>
+              <h3 class="display-10 fw-bold mb-2">選購商品</h3>
               <table class="table">
                 <thead>
                   <tr>
@@ -86,7 +83,7 @@
                     <td class="text-end">
                       {{ $filters.currency(item.final_total) }}
                     </td>
-                    <td v-if="item.coupon" class="text-success">
+                    <td v-if="item.coupon" class="text-danger">
                       使用優惠卷：{{ item.coupon.code }}
                     </td>
                     <td v-else>無使用優惠卷</td>
@@ -94,10 +91,9 @@
                 </tbody>
               </table>
             </div>
-          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">關閉</button>
+          <button type="button" class="l-btn btn--primary btn--md" data-bs-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>
@@ -129,3 +125,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .modal-body th {
+    color: #666;
+  }
+</style>

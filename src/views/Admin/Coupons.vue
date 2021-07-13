@@ -1,41 +1,32 @@
 <template>
-  <div>
-    <Loading :active="isLoading"></Loading>
-    <div class="text-end mt-4">
-      <button class="btn btn-primary" @click="openCouponModal(true)">建立新的優惠券</button>
-    </div>
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th>名稱</th>
-          <th>折扣百分比</th>
-          <th>到期日</th>
-          <th>是否啟用</th>
-          <th>編輯</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, idx) in coupons" :key="idx">
-          <td>{{ item.title }}</td>
-          <td>{{ item.percent }}%</td>
-          <td>{{ $filters.date(item.due_date) }}</td>
-          <td>
-            <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
-            <span v-else class="text-muted">未啟用</span>
-          </td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm" @click="openCouponModal(false, item)">編輯</button>
-              <button class="btn btn-outline-danger btn-sm" @click="openDelCouponModal(item)">刪除</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <CouponModal :coupon="tempCoupon" @update-coupon="updateCoupon" ref="couponModal"></CouponModal>
-    <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"></DelModal>
-    <Pagination :pages="pagination" @emit-page="getCoupons"></Pagination>
+  <Loading :active="isLoading"></Loading>
+  <h3 class="fw-bold mb-4"><i class="bi bi-percent"></i> 優惠卷</h3>
+  <div class="text-end mb-4">
+    <button class="l-btn btn--primary btn--md" @click="openCouponModal(true)">建立新的優惠券</button>
   </div>
+  <ul class="coupons-card wrap mb-6">
+    <li class="d-flex align-items-center justify-content-around" v-for="(item, idx) in coupons" :key="idx">
+      <div class="mb-md-0 mb-3">
+        <p class="mb-1">名稱</p>
+        <p class="display-8 fw-bold">{{ item.title }}</p>
+      </div>
+      <div class="mb-md-0 mb-3">
+        <p class="mb-2"><span class="pe-3">折扣</span>{{ item.percent }}%</p>
+        <p class="mb-2"><span class="pe-3">到期</span>{{ $filters.date(item.due_date) }}</p>
+        <p class="mb-2">
+          <span v-if="item.is_enabled === 1" class="text-danger">已啟用</span>
+          <span v-else class="text-muted">未啟用</span>
+        </p>
+      </div>
+      <div class="btn-group">
+        <button class="l-btn btn--primary btn-sm" @click="openCouponModal(false, item)">編輯</button>
+        <button class="l-btn btn--secondary btn-sm" @click="openDelCouponModal(item)">刪除</button>
+      </div>
+    </li>
+  </ul>
+  <CouponModal :coupon="tempCoupon" @update-coupon="updateCoupon" ref="couponModal"></CouponModal>
+  <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"></DelModal>
+  <Pagination :pages="pagination" @emit-page="getCoupons"></Pagination>
 </template>
 
 <script>

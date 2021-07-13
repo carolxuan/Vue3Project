@@ -3,7 +3,7 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0">
-        <div class="modal-header bg-dark text-white">
+        <div class="modal-header bg-primary text-white">
           <h5 class="modal-title" id="exampleModalLabel">
             <span>新增產品</span>
           </h5>
@@ -26,21 +26,6 @@
                 <input type="file" id="customFile" class="form-control" @change="uploadFile" ref="fileInput">
               </div>
               <img :src="tempProduct.imageUrl" class="img-fluid" alt="">
-              <!-- 延伸技巧，多圖 -->
-              <div class="mt-5">
-                <div class="mb-3 input-group" >
-                  <input type="url" class="form-control form-control"
-                          placeholder="請輸入連結" v-model="tempProduct.imagesUrl">
-                  <button type="button" class="btn btn-outline-danger">
-                    移除
-                  </button>
-                </div>
-                <div>
-                  <button class="btn btn-outline-primary btn-sm d-block w-100">
-                    新增圖片
-                  </button>
-                </div>
-              </div>
             </div>
             <div class="col-sm-8">
               <div class="mb-3">
@@ -100,10 +85,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary"
-                  data-bs-dismiss="modal">取消
+          <button type="button" class="l-btn btn--secondary btn--md me-3" data-bs-dismiss="modal">取消
           </button>
-          <button type="button" class="btn btn-primary" @click="$emit('update-product', tempProduct)">確認</button>
+          <button type="button" class="l-btn btn--primary btn--md" @click="$emit('update-product', tempProduct)">確認</button>
         </div>
       </div>
     </div>
