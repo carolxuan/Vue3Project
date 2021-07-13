@@ -6,6 +6,8 @@
 @import './helpers/grid';
 @import './components/card';
 @import './components/button';
+@import './components/table';
+@import './components/adminNavbar';
 @import './pages/layout';
 @import './pages/home';
 @import './pages/cartList';
@@ -13,3 +15,6 @@
 @import './pages/checkout';
 @import './pages/userCart';
 @import './pages/userProduct';
+@import './pages/dashBoard';
+@import './pages/login';
+

@@ -1,0 +1,42 @@
+.overflow-wrap {
+  @include largeDesktops() {
+    overflow-x: scroll;
+    padding: 0 16px;
+  }
+}
+.table-css{
+  margin: 0 auto;
+  border-collapse: separate;
+  width: 100%;
+  overflow-x: auto;
+  border-spacing: 0px 14px;
+  @include largeDesktops() {
+    white-space: nowrap;
+  }
+  thead {
+    th {
+      padding: 16px 24px;
+    }
+  }
+  tbody {
+    tr {
+      background-color: #fff;
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+      margin-bottom: 14px;
+      border-radius: 10px;
+    }
+    td {
+      padding: 16px 24px 16px 24px;
+      &:first-child {
+        border-left-style: solid;
+        border-top-left-radius: 10px; 
+        border-bottom-left-radius: 10px;
+      }
+      &:last-child {
+        border-right-style: solid;
+        border-bottom-right-radius: 10px; 
+        border-top-right-radius: 10px; 
+      }
+    }
+  }
+}

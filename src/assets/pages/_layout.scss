@@ -1,22 +1,25 @@
 // header
-.navbar-collapse {
-  padding: 16px;
-}
-@media (max-width: 991px) {
+header {
   .navbar-collapse {
-    box-shadow: 0 3px 5px rgba(0,0,0,.1);
+    padding: 16px;
+  }
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      box-shadow: 0 3px 5px rgba(0,0,0,.1);
+    }
+  }
+  .navbar-toggler {
+    @include Desktops() {
+      margin-right: 16px;
+    }
+  }
+  .logo{
+    @include Desktops() {
+      margin-left: 16px;
+    }
   }
 }
-.navbar-toggler {
-  @include Desktops() {
-    margin-right: 16px;
-  }
-}
-.logo{
-  @include Desktops() {
-    margin-left: 16px;
-  }
-}
+
 // 浮動購物車
 .dropstart .dropdown-toggle::before {
   content:'';

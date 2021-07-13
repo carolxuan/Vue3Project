@@ -1,0 +1,42 @@
+.sidebar-meun {
+  position: fixed;
+  width: 14%;
+  @include largeDesktops() {
+    width: 20%;
+  }
+  @include pad() {
+    position: relative;
+    width: 100%;
+  }
+}
+.admin-navbar {
+  .container-fluid {
+    display: block;
+    @include pad() {
+      display: flex;
+    }
+  }
+  .navbar {
+    display: block;
+    height: 100vh;
+    padding: 32px 16px 0 16px;
+    @include pad() {
+      height: auto;
+      display: flex;
+      padding: 10px 8px;
+    }
+  }
+  .navbar-expand-lg .navbar-collapse {
+    display: block;
+    @include pad() {
+      display: flex;
+    }
+  }
+  .navbar-nav {
+    display: block;
+    width: 100%;
+    @include pad() {
+      display: flex;
+    }
+  }
+}

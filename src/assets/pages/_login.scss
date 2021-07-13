@@ -1,0 +1,26 @@
+.login {
+  height: 100vh;
+  background-color: $green;
+  padding-top: 100px;
+  .login-form {
+    padding: 48px 0;
+    border-radius: 10px;
+  }
+  .login-arrow {
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 17px solid #fff;
+    margin-left: 20px;
+    padding-top: 10px;
+  }
+  .login-select {
+    padding-left: 12px;
+  }
+}
+.login-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px;
+}

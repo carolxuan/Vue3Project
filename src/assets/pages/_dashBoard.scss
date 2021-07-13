@@ -1,0 +1,9 @@
+.admin-content {
+  margin-left: 18%;
+  @include largeDesktops() {
+    margin-left: 22%;
+  }
+  @include pad() {
+    margin-left: 0;
+  }
+}
