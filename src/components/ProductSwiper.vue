@@ -85,18 +85,4 @@ export default {
     position: initial;
     padding-bottom: 60px;
   }
-  /* .swiper-button-next {
-    right: 0;
-  }
-  .swiper-button-prev {
-    left: auto;
-    right: 50px;
-  }
-  .swiper-button-next, .swiper-button-prev {
-    top: -36px;
-    color: #888;
-  }
-  .swiper-button-next:after, .swiper-button-prev:after {
-    font-size: 24px;
-  } */
 </style>

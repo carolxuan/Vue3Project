@@ -11,3 +11,18 @@
     }
   }
 }
+
+.userProduct-wrap {
+  li {
+    width: 23%;
+    @include largeDesktops() {
+      width: 30%;
+    }
+    @include pad() {
+      width: 45%;
+    }
+    @include mobile480() {
+      width: 100%;
+    }
+  }
+}

@@ -89,3 +89,19 @@ header {
     border-bottom-color: rgba(0,0,0,0);
   }
 }
+
+// goTop
+.goTop {
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  position: fixed;
+  left: 10px;
+  bottom: 100px;
+  background-color: $primary;
+  padding: 6px 0;
+  cursor: pointer;
+  z-index: 999999;
+}

@@ -16,7 +16,7 @@
     </div>
   </header>
   <div class="float-icon btn-group dropup">
-    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn btn-green dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-cart-fill" style="font-size: 24px"></i>
       <span class="badge bg-danger">{{ cartLength }}</span>
     </button>
@@ -60,7 +60,13 @@
     <ToastMessages></ToastMessages>
     <router-view/>
   </div>
-  <footer class="bg-success pt-6 pb-4">
+  <!-- 點擊回到頂部 -->
+  <div class="goTop" v-if="topShow" @click="goTop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+    </svg>
+  </div>
+  <footer class="bg-green pt-6 pb-4">
     <div class="wrap justify-content-center mb-3">
       <router-link to="/cart" class="text-dark px-3">購物專區</router-link>
       <router-link to="/login" class="text-dark px-3">登入</router-link>
@@ -88,9 +94,30 @@ export default {
       emitter
     }
   },
+  data () {
+    return {
+      topShow: false,
+      scrollTop: 0
+    }
+  },
   methods: {
     removeCartItem (id) {
       this.$store.dispatch('cartModules/removeCartItem', id)
+    },
+    scrollToTop () {
+      this.scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      // 高度 > 300 顯示圖示
+      if (this.scrollTop > 500) {
+        this.topShow = true
+      } else {
+        this.topShow = false
+      }
+    },
+    goTop () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     },
     ...mapActions('cartModules', ['getCart'])
   },
@@ -99,6 +126,12 @@ export default {
       return this.$store.state.isLoading
     },
     ...mapGetters('cartModules', ['cart', 'cartLength'])
+  },
+  mounted () {
+    window.addEventListener('scroll', this.scrollToTop) // 監聽滾動條
+  },
+  unmounted () {
+    window.removeEventListener('scroll', this.scrollToTop) // 移除滾動監聽
   },
   created () {
     this.getCart()

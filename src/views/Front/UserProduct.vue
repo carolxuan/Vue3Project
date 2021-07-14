@@ -23,14 +23,32 @@
           <option value="0" disabled selected>請選擇數量</option>
           <option :value="num" v-for="num in 15" :key="num">{{ num }}</option>
         </select>
-        <button type="button" class="btn btn-primary" @click="addCart(product.id, cartSelect)">加到購物車</button>
+        <button type="button" class="l-btn btn--primary btn--md" @click="addCart(product.id, cartSelect)">加到購物車</button>
       </div>
     </div>
+  </section>
+  <section class="mb-8 mb-md-12">
+    <h3 class="fw-bold mb-4">你可能也喜歡</h3>
+    <ul class="product-wrap userProduct-wrap wrap mb-4">
+      <li v-for="item in otherFilter.slice(0, 8)" :key="item.id">
+          <a href="#" @click.prevent="moreItem(item)">
+            <img :src="item.imageUrl" class="mb-3">
+          </a>
+          <div class="px-3">
+            <h4 class="mb-2">{{ item.title }}</h4>
+            <div class="d-flex justify-content-between mb-3">
+              <del>NT ${{ $filters.currency(item.origin_price) }}</del>
+              <p class="fw-bold">NT ${{ $filters.currency(item.price) }}</p>
+            </div>
+            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3" @click.prevent="addCart(item.id, cartSelect)">加入購物車</a>
+          </div>
+      </li>
+    </ul>
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -58,14 +76,30 @@ export default {
         title: '加入購物車成功',
         icon: 'success'
       })
-    }
+    },
+    moreItem (item) {
+      if (item.is_enabled) {
+        this.id = item.id
+        this.$router.push(`/product/${item.id}`)
+        this.getProduct(item.id)
+      }
+    },
+    ...mapActions('productsModules', ['getProducts'])
   },
   computed: {
-    ...mapGetters('cartModules', ['cart'])
+    otherFilter () {
+      return this.products.filter(item => {
+        if (item.category === this.product.category) {
+          return item.category === this.product.category
+        }
+      })
+    },
+    ...mapGetters('productsModules', ['products'])
   },
   created () {
     this.id = this.$route.params.productId
     this.getProduct()
+    this.getProducts()
   }
 }
 </script>

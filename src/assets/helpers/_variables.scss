@@ -49,8 +49,9 @@ $theme-colors: map-merge(
     'gray5': $gray-500,
     'grayf8': $gray-f8,
     'danger': $red,
-    'success':$green,
+    'success':#683AFF,
     'purple': $purple,
+    'green': $green,
   ),
   $theme-colors
 );

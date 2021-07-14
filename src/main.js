@@ -21,7 +21,16 @@ import $httpMsgState from './methods/pushMsgState'
 
 const app = createApp(App)
 
+// 彈跳訊息
 app.config.globalProperties.$httpMsgState = $httpMsgState
+
+// 金額千分位、時間換算
+app.config.globalProperties.$filters = { currency, date }
+
+// 切換路由時回到最頂部
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
+})
 
 // sweetalert2
 const options = {
@@ -31,8 +40,6 @@ const options = {
   showConfirmButton: false,
   timer: 2500
 }
-
-app.config.globalProperties.$filters = { currency, date }
 
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule])
