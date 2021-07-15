@@ -1,5 +1,4 @@
 <template>
-  <Loading :active="isLoading"></Loading>
   <h3 class="fw-bold mb-4"><i class="bi bi-percent"></i> 優惠卷</h3>
   <div class="text-end mb-4">
     <button class="l-btn btn--primary btn--md" @click="openCouponModal(true)">建立新的優惠券</button>
@@ -50,20 +49,19 @@ export default {
         percent: 100,
         code: ''
       },
-      isLoading: false,
       isNew: false
     }
   },
   inject: ['emitter'],
   methods: {
     getCoupons (currentPage = 1) {
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons/?page=${currentPage}`
       this.$http.get(url, this.tempCoupon)
         .then(res => {
           this.coupons = res.data.coupons
           this.pagination = res.data.pagination
-          this.isLoading = false
+          this.$store.dispatch('updateLoading', false)
         })
     },
     openCouponModal (isNew, item) {
@@ -106,7 +104,6 @@ export default {
     },
     delCoupon () {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
-      this.isLoading = true
       this.$http.delete(url)
         .then((res) => {
           this.$httpMsgState(res, '刪除')

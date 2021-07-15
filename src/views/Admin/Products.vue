@@ -1,5 +1,4 @@
 <template>
-  <Loading :active="isLoading"></Loading>
   <h3 class="fw-bold"><i class="bi bi-list-ul"></i> 商品列表</h3>
   <div class="text-end">
     <button class="l-btn btn--primary btn--md" type="button" @click="openModal(true)">增加一個產品</button>
@@ -56,8 +55,7 @@ export default {
       products: [],
       pagination: {},
       tempProduct: {},
-      isNew: false,
-      isLoading: false
+      isNew: false
     }
   },
   components: {
@@ -69,14 +67,14 @@ export default {
   methods: {
     getProducts (page = 1) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(url)
         .then(res => {
           if (res.data.success) {
             this.products = res.data.products
             this.pagination = res.data.pagination
           }
-          this.isLoading = false
+          this.$store.dispatch('updateLoading', false)
         })
     },
     openModal (isNew, item) {
@@ -121,13 +119,13 @@ export default {
     },
     delProduct () {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       this.$http.delete(url)
         .then(res => {
           const delComponent = this.$refs.delModal
           delComponent.hideModal()
           this.getProducts()
-          this.isLoading = false
+          this.$store.dispatch('updateLoading', false)
           this.$httpMsgState(res, '刪除產品')
         })
     }

@@ -1,4 +1,7 @@
 <template>
+  <Loading :active="isLoading">
+    <img src="../../assets/images/loadingImg.svg" alt="">
+  </Loading>
   <div class="wrap">
     <div class="sidebar-meun">
       <SideBar></SideBar>
@@ -30,6 +33,11 @@ export default {
   watch: {
     $route () {
       $('.navbar-collapse').removeClass('show')
+    }
+  },
+  computed: {
+    isLoading () {
+      return this.$store.state.isLoading
     }
   },
   created () {

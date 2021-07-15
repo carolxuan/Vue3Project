@@ -1,5 +1,4 @@
 <template>
-  <Loading :active="isLoading"></Loading>
   <h3 class="fw-bold"><i class="bi bi-clock"></i> 最近訂單</h3>
   <div class="overflow-wrap mb-6">
     <table class="table-css mt-4">
@@ -62,8 +61,7 @@ export default {
       orders: {},
       pagination: {},
       tempOrder: {},
-      currentPage: 1,
-      isLoading: false
+      currentPage: 1
     }
   },
   components: {
@@ -76,23 +74,23 @@ export default {
     getOrders (currentPage = 1) {
       this.currentPage = currentPage
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/?page=${currentPage}`
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(url)
         .then(res => {
           this.orders = res.data.orders
           this.pagination = res.data.pagination
-          this.isLoading = false
+          this.$store.dispatch('updateLoading', false)
         })
     },
     updatePaid (item) {
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/${item.id}`
       const paid = {
         is_paid: item.is_paid
       }
       this.$http.put(url, { data: paid })
         .then(res => {
-          this.isLoading = false
+          this.$store.dispatch('updateLoading', false)
           this.getOrders(this.currentPage)
         })
     },

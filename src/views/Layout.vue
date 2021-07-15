@@ -60,7 +60,9 @@
     </div>
   </div>
   <div class="container position-relative">
-    <Loading :active="isLoading"></Loading>
+    <Loading :active="isLoading">
+      <img src="../assets/images/loadingImg.svg">
+    </Loading>
     <ToastMessages></ToastMessages>
     <router-view/>
   </div>
