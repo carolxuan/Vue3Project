@@ -71,7 +71,7 @@ header {
     object-fit: cover;
     object-position: center;
     @include mobile480() {
-      width: 48px;
+      width: 100px;
       height: 48px;
     }
   }
