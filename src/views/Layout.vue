@@ -7,10 +7,14 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <div class="navbar-nav">
-            <router-link to="/cart" class="nav-link text-dark">購物專區</router-link>
-            <router-link to="/login" class="nav-link text-dark">登入</router-link>
-          </div>
+          <ul class="navbar-nav">
+            <li>
+              <router-link to="/cart" class="nav-link text-dark">購物專區</router-link>
+            </li>
+            <li>
+              <router-link to="/login" class="nav-link text-dark">登入</router-link>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>
@@ -84,6 +88,7 @@
 import ToastMessages from '@/components/ToastMessages.vue'
 import emitter from '@/methods/emitter'
 import { mapGetters, mapActions } from 'vuex'
+import $ from 'jquery'
 
 export default {
   components: {
@@ -98,6 +103,11 @@ export default {
     return {
       topShow: false,
       scrollTop: 0
+    }
+  },
+  watch: {
+    $route () {
+      $('.navbar-collapse').removeClass('show')
     }
   },
   methods: {

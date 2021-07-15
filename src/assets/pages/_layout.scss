@@ -104,4 +104,7 @@ header {
   padding: 6px 0;
   cursor: pointer;
   z-index: 999999;
+  @include pad() {
+    display: none;
+  }
 }
