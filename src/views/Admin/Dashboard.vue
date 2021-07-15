@@ -18,7 +18,6 @@
 import emitter from '@/methods/emitter'
 import ToastMessages from '@/components/ToastMessages.vue'
 import SideBar from '@/components/AdminNavbar.vue'
-import $ from 'jquery'
 
 export default {
   components: {
@@ -28,11 +27,6 @@ export default {
   provide () {
     return {
       emitter
-    }
-  },
-  watch: {
-    $route () {
-      $('.navbar-collapse').removeClass('show')
     }
   },
   computed: {
