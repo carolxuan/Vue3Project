@@ -32,7 +32,7 @@
     <ul class="product-wrap userProduct-wrap wrap mb-4">
       <li v-for="item in otherFilter.slice(0, 8)" :key="item.id">
           <a href="#" @click.prevent="moreItem(item)">
-            <img :src="item.imageUrl" class="mb-3">
+            <img :src="item.imageUrl" :alt="item.title" class="mb-3">
           </a>
           <div class="px-3">
             <h4 class="mb-2">{{ item.title }}</h4>

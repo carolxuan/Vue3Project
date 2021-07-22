@@ -3,7 +3,7 @@
   <section class="discount mb-8 mb-md-12">
     <div class="wrap align-items-center justify-content-around">
       <div class="discount-top d-flex align-items-center">
-        <img src="../../assets/images/discount-img.svg">
+        <img src="../../assets/images/discount-img.svg" alt="防疫圖片">
         <p class="h3">防疫期間<br>全館品項 88 折</p>
       </div>
       <div class="d-flex align-items-center discount-code">
@@ -17,22 +17,22 @@
     <ul class="advantage-item wrap justify-content-center">
       <li>
         <h4 class="mb-3"><span class="advantage-txt display-10">當季</span></h4>
-        <img src="../../assets/images/img-1.svg" class="mb-2">
+        <img src="../../assets/images/img-1.svg" alt="當季嚴選蔬菜" class="mb-2">
         <p>當季嚴選蔬菜</p>
       </li>
       <li>
         <h4 class="mb-3"><span class="advantage-txt display-10">多樣</span></h4>
-        <img src="../../assets/images/img-2.svg" class="mb-2">
+        <img src="../../assets/images/img-2.svg" alt="生鮮多樣選擇" class="mb-2">
         <p>生鮮多樣選擇</p>
       </li>
       <li>
         <h4 class="mb-3"><span class="advantage-txt display-10">保鮮</span></h4>
-        <img src="../../assets/images/img-3.svg" class="mb-2">
+        <img src="../../assets/images/img-3.svg" alt="冷藏運送確保品質" class="mb-2">
         <p>冷藏運送確保品質</p>
       </li>
       <li>
         <h4 class="mb-3"><span class="advantage-txt display-10">安全</span></h4>
-        <img src="../../assets/images/img-4.svg" class="mb-2">
+        <img src="../../assets/images/img-4.svg" alt="通過農藥殘留檢測" class="mb-2">
         <p>通過農藥殘留檢測</p>
       </li>
     </ul>
@@ -52,13 +52,13 @@
           <li class="mb-2">更多資訊，歡迎加入我們 Line 官方帳號</li>
           <li>
             <a href="javascript:void(0)">
-              <img src="../../assets/images/lineBtn.svg" style="width: 120px">
+              <img src="../../assets/images/lineBtn.svg" alt="加入我們" style="width: 120px">
             </a>
           </li>
         </ul>
       </div>
       <div class="contact-form">
-        <Form action="" class="user-form" v-slot="{ errors }" @submit="sendOut">
+        <Form class="user-form" v-slot="{ errors }" @submit="sendOut">
           <div class="form-group mb-3">
             <label for="userName" class="form-label">您的姓名</label>
             <Field type="text" name="姓名" class="form-control" id="userName" aria-describedby="namelHelp" placeholder="輸入姓名" rules="required" :class="{ 'is-invalid': errors['姓名'] }" v-model="form.name"></Field>

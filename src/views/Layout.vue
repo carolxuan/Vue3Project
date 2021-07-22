@@ -45,18 +45,6 @@
               </tr>
             </template>
           </tbody>
-          <!-- <tfoot>
-            <tr>
-              <td colspan="2"></td>
-              <td colspan="2" class="fw-bold">總金額</td>
-              <td class="text-end fw-bold display-10">{{ $filters.currency(cart.total) }}</td>
-            </tr>
-            <tr class="bg-gray2">
-              <td colspan="5" class="px-3 py-3 text-center" v-if="cartLength > 0">
-                <router-link to="/cartList" class="l-btn btn--primary btn--md w-100">前往結賬 <i class="bi bi-chevron-right"></i></router-link>
-              </td>
-            </tr>
-          </tfoot> -->
         </table>
       </div>
       <p class="text-end fw-bold display-10 bg-gray3 px-4 py-4"><span class="me-5">總金額</span>{{ $filters.currency(cart.total) }}</p>
@@ -122,7 +110,6 @@ export default {
     },
     scrollToTop () {
       this.scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      // 高度 > 300 顯示圖示
       if (this.scrollTop > 500) {
         this.topShow = true
       } else {

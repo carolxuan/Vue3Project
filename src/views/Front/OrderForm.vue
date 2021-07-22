@@ -14,7 +14,7 @@
     </li>
   </ul>
   <section class="order-form mb-7">
-    <Form action="" class="orderInfo-form" v-slot="{ errors }" @submit="createOrder">
+    <Form class="orderInfo-form" v-slot="{ errors }" @submit="createOrder">
       <div class="card-border mb-4">
         <div class="card-border-title mb-3">
           <h3 class="h5">選擇取貨方式</h3>

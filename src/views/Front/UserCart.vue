@@ -1,7 +1,7 @@
 <template>
   <section class="discount mb-8 mb-md-12 position-relative mt-8">
-    <img src="../../assets/images/discount-left.svg" class="discount-left">
-    <img src="../../assets/images/discount-right.svg" class="discount-right">
+    <img src="../../assets/images/discount-left.svg" alt="折扣優惠" class="discount-left">
+    <img src="../../assets/images/discount-right.svg" alt="折扣優惠" class="discount-right">
     <div class="discount-cart-item wrap justify-content-md-center justify-content-start">
       <p class="h3 me-0 me-md-6 mb-2 mb-md-0">防疫期間<br>全館品項 88 折</p>
       <div class="d-flex align-items-center discount-code">
@@ -25,7 +25,7 @@
         <ul class="product-wrap wrap mb-4">
           <li v-for="item in filterProducts" :key="item.id">
             <a href="#" @click.prevent="getProduct(item.id)">
-              <img :src="item.imageUrl" class="mb-3">
+              <img :src="item.imageUrl" :alt="item.title" class="mb-3">
             </a>
             <div class="px-3">
               <h4 class="mb-2">{{ item.title }}</h4>

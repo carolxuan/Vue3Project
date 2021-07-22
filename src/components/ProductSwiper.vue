@@ -21,7 +21,7 @@
       <swiper-slide v-for="item in hotProducts" :key="item.id">
         <div class="product-card">
           <router-link :to='`/product/${item.id}`'>
-            <img :src="item.imageUrl" class="mb-3">
+            <img :src="item.imageUrl" :alt="item.title" class="mb-3">
           </router-link>
           <div class="px-3">
             <h4 class="mb-2">{{ item.title }}</h4>
