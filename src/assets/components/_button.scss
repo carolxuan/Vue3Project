@@ -13,7 +13,6 @@
   font-weight: 500;
   letter-spacing: 0;
   text-decoration: none;
-  background-color: #d1d2d3;
   border: 0;
   border-radius: 18px;
   outline: 0;
@@ -23,10 +22,12 @@
   user-drag: none;
   transition: all 0.3s;
 }
+
 .btn--primary,
 .btn--secondary{
   color: #fff;
 }
+
 .l-btn.btn--primary{
   background-color: #683AFF;
 }
@@ -35,6 +36,7 @@
     background-color: #A259FF;
     color: #fff;
 }
+
 .l-btn.btn--secondary{
   background-color: #495057;
   color: #fff;
@@ -44,6 +46,18 @@
   background-color: #6c757d;
   color: #fff;
 }
+
+.btn-outline--primary {
+  color: #683AFF;
+  border: 1px solid $primary;
+}
+
+.l-btn.btn-outline--primary:hover,
+.l-btn.btn-outline--primary:active {
+  background-color: $primary;
+  color: #fff;
+}
+
 .l-btn.btn--lg{
   min-width: 148px;
   font-size: 18px;
@@ -53,6 +67,7 @@
   border-radius: 24px;
   padding: 0 16px;
 }
+
 .l-btn.btn--md{
   min-width: 130px;
   font-size: 16px;
@@ -62,6 +77,7 @@
   border-radius: 24px;
   padding: 0 16px;
 }
+
 .l-btn.btn--sm{
   font-size: 14px;
   line-height: 32px;
@@ -70,10 +86,12 @@
   border-radius: 16px;
   padding: 0 32px;
 }
+
 .btn-group .l-btn{
   margin-left: 8px;
   margin-right: 8px;
 }
+
 .btn-group--center{
   text-align: center;
 }

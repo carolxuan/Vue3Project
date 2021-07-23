@@ -12,7 +12,7 @@
               <del>NT ${{ $filters.currency(item.origin_price) }}</del>
               <p class="fw-bold">NT ${{ $filters.currency(item.price) }}</p>
             </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3" @click.prevent="buyNow(item.id)">加入購物車</a>
+            <a href="#" class="l-btn btn--md btn-outline--primary w-100 mb-3" @click.prevent="buyNow(item.id)">加入購物車</a>
           </div>
         </div>
       </swiper-slide>

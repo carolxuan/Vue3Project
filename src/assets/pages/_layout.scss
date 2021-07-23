@@ -1,3 +1,9 @@
+.sticky-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 // header
 header {
   .navbar-collapse {
@@ -32,7 +38,7 @@ header {
 .float-icon {
   position: fixed;
   right: 36px;
-  top: 20px;
+  bottom: 100px;
   z-index: 99;
   @include Desktops() {
     right: 16px;
