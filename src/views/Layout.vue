@@ -55,7 +55,6 @@
     <Loading :active="isLoading">
       <img src="../assets/images/loadingImg.svg">
     </Loading>
-    <ToastMessages></ToastMessages>
     <router-view/>
   </div>
   <!-- 點擊回到頂部 -->
@@ -70,29 +69,19 @@
       <router-link to="/login" class="text-dark px-3">登入</router-link>
     </div>
     <ul class="d-flex justify-content-center mb-3">
-      <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-line.svg"></a></li>
-      <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-fb.svg"></a></li>
-      <li class="px-2"><a href="javascript:void(0)"><img src="../assets/images/icon-ig.svg"></a></li>
+      <li class="px-2"><a href="tel:0422222222"><img src="../assets/images/icon-tel.svg"></a></li>
+      <li class="px-2"><a href="mailto:123@gmail.com"><img src="../assets/images/icon-email.svg"></a></li>
+      <li class="px-2"><a href="#"><img src="../assets/images/icon-fb.svg"></a></li>
     </ul>
     <p class="text-center">ⓒ Copyright 2021 練習使用非商業用途</p>
   </footer>
 </template>
 
 <script>
-import ToastMessages from '@/components/ToastMessages.vue'
-import emitter from '@/methods/emitter'
 import { mapGetters, mapActions } from 'vuex'
 import $ from 'jquery'
 
 export default {
-  components: {
-    ToastMessages
-  },
-  provide () {
-    return {
-      emitter
-    }
-  },
   data () {
     return {
       topShow: false,

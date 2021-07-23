@@ -112,7 +112,7 @@ export default {
   data () {
     return {
       modal: {},
-      tempProduct: {} // 外層資料的接收
+      tempProduct: {}
     }
   },
   methods: {
@@ -133,6 +133,7 @@ export default {
         })
     }
   },
+  emits: ['update-product'],
   mixins: [modalMixin]
 }
 </script>

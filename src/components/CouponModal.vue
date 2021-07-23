@@ -68,6 +68,7 @@ export default {
       this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)
     }
   },
+  emits: ['update-coupon'],
   mixins: [modalMixin]
 }
 </script>

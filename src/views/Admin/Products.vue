@@ -39,9 +39,9 @@
       </tbody>
     </table>
   </div>
-  <Pagination :pages="pagination" @emit-page="getProducts"></Pagination>
-  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
-  <DelModal ref="delModal" :item="tempProduct" @del-item="delProduct"></DelModal>
+  <Pagination :pages="pagination" @emit-page="getProducts" />
+  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct" />
+  <DelModal ref="delModal" :item="tempProduct" @del-item="delProduct" />
 </template>
 
 <script>

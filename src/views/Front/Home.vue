@@ -1,5 +1,5 @@
 <template>
-  <HomeSwiper class="banner"></HomeSwiper>
+  <HomeSwiper class="banner" />
   <section class="discount mb-8 mb-md-12">
     <div class="wrap align-items-center justify-content-around">
       <div class="discount-top d-flex align-items-center">
@@ -39,7 +39,7 @@
   </section>
   <section class="product mb-8 mb-md-12">
     <h2 class="text-center mb-5">熱門商品</h2>
-    <ProductSwiper></ProductSwiper>
+    <ProductSwiper />
   </section>
   <section class="contact bg-grayf8 mb-8 mb-md-12">
     <div class="wrap align-items-center justify-content-center">
@@ -51,7 +51,7 @@
           <li class="mb-4"><span>地址</span>台中市北屯區遼寧路一段376號</li>
           <li class="mb-2">更多資訊，歡迎加入我們 Line 官方帳號</li>
           <li>
-            <a href="javascript:void(0)">
+            <a href="#">
               <img src="../../assets/images/lineBtn.svg" alt="加入我們" style="width: 120px">
             </a>
           </li>
@@ -61,13 +61,13 @@
         <Form class="user-form" v-slot="{ errors }" @submit="sendOut">
           <div class="form-group mb-3">
             <label for="userName" class="form-label">您的姓名</label>
-            <Field type="text" name="姓名" class="form-control" id="userName" aria-describedby="namelHelp" placeholder="輸入姓名" rules="required" :class="{ 'is-invalid': errors['姓名'] }" v-model="form.name"></Field>
-            <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+            <Field type="text" name="姓名" class="form-control" id="userName" aria-describedby="namelHelp" placeholder="輸入姓名" rules="required" :class="{ 'is-invalid': errors['姓名'] }" v-model="form.name" />
+            <ErrorMessage name="姓名" class="invalid-feedback" />
           </div>
           <div class="form-group mb-3">
             <label for="userEmail" class="form-label">您的信箱</label>
-            <Field type="email" name="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="輸入信箱" :class="{ 'is-invalid': errors['email'] }" rules="email|required" v-model="form.email"></Field>
-            <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+            <Field type="email" name="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="輸入信箱" :class="{ 'is-invalid': errors['email'] }" rules="email|required" v-model="form.email" />
+            <ErrorMessage name="email" class="invalid-feedback" />
           </div>
           <div class="mb-3">
             <label for="textarea" class="form-label">留言</label>

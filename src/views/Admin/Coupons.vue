@@ -23,9 +23,9 @@
       </div>
     </li>
   </ul>
-  <CouponModal :coupon="tempCoupon" @update-coupon="updateCoupon" ref="couponModal"></CouponModal>
-  <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"></DelModal>
-  <Pagination :pages="pagination" @emit-page="getCoupons"></Pagination>
+  <CouponModal :coupon="tempCoupon" @update-coupon="updateCoupon" ref="couponModal" />
+  <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon" />
+  <Pagination :pages="pagination" @emit-page="getCoupons" />
 </template>
 
 <script>

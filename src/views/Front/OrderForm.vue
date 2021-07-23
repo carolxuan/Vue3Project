@@ -20,11 +20,11 @@
           <h3 class="h5">選擇取貨方式</h3>
         </div>
         <div class="form-check mb-3" v-for="take in takeOption" :key="take">
-          <Field class="form-check-input" type="radio" name="取貨方式" :id="take" :value="take" v-model="form.takeWay" rules="required" :class="{ 'is-invalid': errors['取貨方式'] }"></Field>
+          <Field class="form-check-input" type="radio" name="取貨方式" :id="take" :value="take" v-model="form.takeWay" rules="required" :class="{ 'is-invalid': errors['取貨方式'] }" />
           <label class="form-check-label" :for="take">
             {{ take }}
           </label>
-          <ErrorMessage name="取貨方式" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage name="取貨方式" class="invalid-feedback" />
         </div>
       </div>
       <div class="card-border mb-4">
@@ -32,11 +32,11 @@
           <h3 class="h5">選擇付款方式</h3>
         </div>
         <div class="form-check mb-3" v-for="pay in payOption" :key="pay">
-          <Field class="form-check-input" type="radio" name="付款方式" :id="pay" :value="pay" v-model="form.payMethod" rules="required" :class="{ 'is-invalid': errors['付款方式'] }"></Field>
+          <Field class="form-check-input" type="radio" name="付款方式" :id="pay" :value="pay" v-model="form.payMethod" rules="required" :class="{ 'is-invalid': errors['付款方式'] }" />
           <label class="form-check-label" :for="pay">
             {{ pay }}
           </label>
-          <ErrorMessage name="付款方式" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage name="付款方式" class="invalid-feedback" />
         </div>
       </div>
       <div class="card-border mb-4">
@@ -46,8 +46,8 @@
         <div class="wrap">
           <div class="col-md-6 col-12 mb-3 pe-md-3 pe-0">
             <label for="customerName" class="form-label">姓名</label>
-            <Field type="text" class="form-control orderInfo-input" id="customerName" name="姓名" placeholder="請輸入姓名" rules="required" :class="{ 'is-invalid': errors['姓名'] }" v-model="form.user.name"></Field>
-            <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+            <Field type="text" class="form-control orderInfo-input" id="customerName" name="姓名" placeholder="請輸入姓名" rules="required" :class="{ 'is-invalid': errors['姓名'] }" v-model="form.user.name" />
+            <ErrorMessage name="姓名" class="invalid-feedback" />
           </div>
           <div class="col-md-6 col-12 mb-3 ps-md-3 ps-0">
             <label for="customerPhone" class="form-label">電話</label>
@@ -60,8 +60,8 @@
               :class="{ 'is-invalid': errors['電話'] }"
               rules="required"
               v-model="form.user.tel"
-            ></Field>
-            <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            />
+            <ErrorMessage name="電話" class="invalid-feedback" />
           </div>
         </div>
         <div class="mb-3">
@@ -75,8 +75,8 @@
             :class="{ 'is-invalid': errors['email'] }"
             rules="email|required"
             v-model="form.user.email"
-          ></Field>
-          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+          />
+          <ErrorMessage name="email" class="invalid-feedback" />
         </div>
         <div class="mb-3">
           <label for="customerAddress" class="form-label">地址</label>
@@ -89,8 +89,8 @@
             :class="{ 'is-invalid': errors['地址'] }"
             rules="required"
             v-model="form.user.address"
-          ></Field>
-          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+          />
+          <ErrorMessage name="地址" class="invalid-feedback" />
         </div>
         <div class="mb-3">
           <label for="textarea" class="form-label">備註 (選填)</label>

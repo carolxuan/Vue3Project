@@ -4,11 +4,11 @@
   </Loading>
   <div class="wrap">
     <div class="sidebar-meun">
-      <SideBar></SideBar>
+      <SideBar />
     </div>
     <div class="admin-content col-lg-9 col-md-9 col-12">
       <div class="container mt-6 mb-6">
-        <ToastMessages></ToastMessages>
+        <ToastMessages />
         <router-view/>
       </div>
     </div>

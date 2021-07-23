@@ -1,5 +1,5 @@
 <template>
-  <swiper :spaceBetween="30" :autoplay='{ "delay": 1500, "disableOnInteraction": false }' :pagination='{ "clickable": true }' :speed="600" :parallax="true" class="mySwiper">
+  <swiper :spaceBetween="30" :autoplay="option.autoplay" :pagination="option.pagination" :speed="600" :parallax="true" class="mySwiper">
     <swiper-slide>
       <div class="banner-bg bg-1 parallax-bg" data-swiper-parallax="-23%"></div>
       <div class="banner-inner-1 position-absolute">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </swiper-slide>
-     <div class="swiper-pagination"></div>
+    <div class="swiper-pagination"></div>
   </swiper>
 </template>
 
@@ -39,7 +39,17 @@ export default {
     SwiperSlide
   },
   data () {
-    return {}
+    return {
+      option: {
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          clickable: true
+        }
+      }
+    }
   }
 }
 </script>

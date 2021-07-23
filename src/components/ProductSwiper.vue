@@ -1,23 +1,6 @@
 <template>
   <div class="outSwiperBox">
-    <swiper :slidesPerView="4" :loop="true" :autoplay='{ "delay": 2000, "disableOnInteraction": false }' :pagination='{ "clickable": true }' :speed="300" :breakpoints='{
-      "0": {
-        "slidesPerView": 1,
-        "spaceBetween": 0
-      },
-      "480": {
-        "slidesPerView": 2,
-        "spaceBetween": 16
-      },
-      "767": {
-        "slidesPerView": 3,
-        "spaceBetween": 18
-      },
-      "1024": {
-        "slidesPerView": 4,
-        "spaceBetween": 24
-      }
-    }' class="inSwiperBox mySwiper">
+    <swiper :slidesPerView="4" :loop="true" :autoplay="options.autoplay" :pagination="options.pagination" :speed="300" :breakpoints="options.breakpoints" class="inSwiperBox mySwiper">
       <swiper-slide v-for="item in hotProducts" :key="item.id">
         <div class="product-card">
           <router-link :to='`/product/${item.id}`'>
@@ -51,6 +34,37 @@ export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  data () {
+    return {
+      options: {
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          clickable: true
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 0
+          },
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 16
+          },
+          767: {
+            slidesPerView: 3,
+            spaceBetween: 18
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 24
+          }
+        }
+      }
+    }
   },
   computed: {
     hotProducts () {

@@ -37,7 +37,7 @@
             </div>
           </li>
         </ul>
-        <Pagination :pages="pagination" @emit-page="getAllProducts" v-if="filterText===''"></Pagination>
+        <Pagination :pages="pagination" @emit-page="getAllProducts" v-if="filterText===''" />
       </div>
     </div>
   </section>

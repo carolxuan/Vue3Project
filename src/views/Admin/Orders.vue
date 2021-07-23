@@ -45,9 +45,9 @@
       </tbody>
     </table>
   </div>
-  <OrderModal :order="tempOrder" ref="orderModal"></OrderModal>
-  <DelModal :item="tempOrder" ref="delModal" @del-item="delOrder"></DelModal>
-  <Pagination :pages="pagination" @emit-page="getOrders"></Pagination>
+  <OrderModal :order="tempOrder" ref="orderModal" />
+  <DelModal :item="tempOrder" ref="delModal" @del-item="delOrder" />
+  <Pagination :pages="pagination" @emit-page="getOrders" />
 </template>
 
 <script>

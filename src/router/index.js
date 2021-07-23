@@ -20,11 +20,11 @@ const routes = [
       },
       {
         path: 'cart',
-        component: () => import('../views/Front/UserCart.vue')
+        component: () => import('../views/Front/Cart.vue')
       },
       {
         path: 'product/:productId',
-        component: () => import('../views/Front/UserProduct.vue')
+        component: () => import('../views/Front/Product.vue')
       },
       {
         path: 'cartList',

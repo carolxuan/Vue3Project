@@ -30,6 +30,7 @@ export default {
       modal: ''
     }
   },
+  emits: ['del-item'],
   mixins: [modalMixin]
 }
 </script>

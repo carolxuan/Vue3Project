@@ -1,6 +1,5 @@
 /* 全站設定
 -------------------------------------------------- */
-/* 全域 border box */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
 
 body {
@@ -15,8 +14,6 @@ body {
 .btn:focus,.btn:active:focus,
 .btn.active:focus,.btn.focus,
 .btn:active.focus,.btn.active.focus {  
-  // outline: none !important;
-  // border-color: transparent !important;
   box-shadow: none !important;
 }
 *,
