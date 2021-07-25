@@ -1,4 +1,5 @@
 <template>
+  <CartFloat />
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><router-link to="/">首頁</router-link></li>
@@ -24,7 +25,7 @@
           <option value="0" disabled selected>請選擇數量</option>
           <option :value="num" v-for="num in 15" :key="num">{{ num }}</option>
         </select>
-        <button type="button" class="l-btn btn--primary btn--md" @click="addCart(product.id, cartSelect)">加到購物車</button>
+        <a href="#" type="button" class="l-btn btn-outline--primary btn--md" @click.prevent="addCart(product.id, cartSelect)">加到購物車</a>
       </div>
     </div>
   </section>
@@ -41,7 +42,7 @@
               <del>NT ${{ $filters.currency(item.origin_price) }}</del>
               <p class="fw-bold">NT ${{ $filters.currency(item.price) }}</p>
             </div>
-            <a href="#" class="l-btn btn--md btn--primary w-100 mb-3" @click.prevent="addCart(item.id, cartSelect)">加入購物車</a>
+            <a href="#" class="l-btn btn--md btn-outline--primary w-100 mb-3" @click.prevent="addCart(item.id, cartSelect)">加入購物車</a>
           </div>
       </li>
     </ul>
@@ -50,8 +51,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import CartFloat from '@/components/CartFloat.vue'
 
 export default {
+  components: {
+    CartFloat
+  },
   data () {
     return {
       product: {},

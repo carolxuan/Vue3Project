@@ -1,4 +1,5 @@
 <template>
+  <CartFloat />
   <HomeSwiper class="banner" />
   <section class="discount mb-8 mb-md-12">
     <div class="wrap align-items-center justify-content-around">
@@ -85,11 +86,13 @@
 <script>
 import HomeSwiper from '@/components/BannerSwiper.vue'
 import ProductSwiper from '@/components/ProductSwiper.vue'
+import CartFloat from '@/components/CartFloat.vue'
 
 export default {
   components: {
     HomeSwiper,
-    ProductSwiper
+    ProductSwiper,
+    CartFloat
   },
   data () {
     return {

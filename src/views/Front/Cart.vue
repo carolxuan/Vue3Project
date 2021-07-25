@@ -1,4 +1,5 @@
 <template>
+  <CartFloat />
   <section class="discount mb-8 mb-md-12 position-relative mt-8">
     <img src="../../assets/images/discount-left.svg" alt="折扣優惠" class="discount-left">
     <img src="../../assets/images/discount-right.svg" alt="折扣優惠" class="discount-right">
@@ -33,7 +34,7 @@
                 <del>NT ${{ $filters.currency(item.origin_price) }}</del>
                 <p class="fw-bold">NT ${{ $filters.currency(item.price) }}</p>
               </div>
-              <a href="#" class="l-btn btn--md btn--primary w-100 mb-3" @click.prevent="addCart(item.id)">加入購物車</a>
+              <a href="#" class="l-btn btn--md btn-outline--primary w-100 mb-3" @click.prevent="addCart(item.id)">加入購物車</a>
             </div>
           </li>
         </ul>
@@ -46,6 +47,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Pagination from '@/components/Pagination.vue'
+import CartFloat from '@/components/CartFloat.vue'
 
 export default {
   data () {
@@ -55,7 +57,8 @@ export default {
     }
   },
   components: {
-    Pagination
+    Pagination,
+    CartFloat
   },
   methods: {
     getAllProducts (page = 1) {
