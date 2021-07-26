@@ -16,10 +16,14 @@
     <div class="row">
       <div class="col-md-3">
         <div class="side-menu">
-          <ul>
-            <li @click="filterText = ''" :class="{ 'active': filterText === '' }">全部商品</li>
-            <li v-for="item in categories" :key="item" @click="filterText = item" :class="{ 'active': item === filterText }">{{ item }}</li>
-          </ul>
+          <a class="btn btn-green d-md-none mb-2 ms-2" data-bs-toggle="collapse" href="#collapseExample" role="button"  aria-expanded="false" aria-controls="collapseExample">選擇品項 <i class="bi bi-chevron-down icon-open"></i><i class="bi bi-chevron-up icon-close"></i>
+          </a>
+          <div class="collapse d-md-block" id="collapseExample">
+            <ul>
+              <li @click="filterText = ''" :class="{ 'active': filterText === '' }">全部商品</li>
+              <li v-for="item in categories" :key="item" @click="filterText = item" :class="{ 'active': item === filterText }">{{ item }}</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="col-md-9">

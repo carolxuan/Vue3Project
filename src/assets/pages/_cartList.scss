@@ -1,6 +1,6 @@
 .step-list{
   li {
-    min-width: 300px;
+    min-width: 216px;
     padding: 16px;
     margin: 8px 16px;
     border-radius: 10px;
@@ -11,12 +11,32 @@
     }
   }
 }
-.cart-list-table {
+.cart-list {
   max-width: 1100px;
   margin: 0 auto;
+}
+.cart-list-table {
+  @include apple() {
+    thead {
+      display: none;
+    }
+  }
   tbody {
     td {
       padding: 18px 0;
+      @include apple() {
+        display: block;
+        border-bottom: none;
+        padding: 10px 0;
+        &:nth-child(1) {
+          padding: 0;
+        }
+        &:nth-child(5) {
+          border-bottom: 1px solid $gray-400 !important;
+          padding: 10px 0 18px 0;
+          margin-bottom: 12px;
+        }
+      }
     }
     img {
       width: 80px;
@@ -24,6 +44,19 @@
       object-fit: cover;
       object-position: center;
       margin-right: 16px;
+    }
+    @include apple() {
+      .td-before {
+        &:before {
+          content: attr(data-title);
+          display: inline-block;
+          width: auto;
+          color: #000;
+          min-width: 20%;
+          font-weight: 900;
+          padding-right: 16px;
+        }
+      }
     }
   }
   tfoot {

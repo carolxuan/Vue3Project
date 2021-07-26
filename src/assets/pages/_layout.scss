@@ -60,7 +60,7 @@ header {
   }
   .scroll-table {
     overflow-y: auto;
-    height: 35vh;
+    height: 33vh;
     @include mobile480() {
       height: 28vh;
     }
@@ -83,21 +83,17 @@ header {
   }
   img {
     width: 64px;
-    height: 70px;
+    height: 48px;
     object-fit: cover;
     object-position: center;
-    @include mobile480() {
-      width: 100px;
-      height: 48px;
-    }
   }
   td {
     vertical-align: middle;
   }
   .td-css {
-    padding: 16px;
+    padding: 12px;
     @include apple() {
-      padding: 10px;
+      padding: 8px 5px;
     }
   }
   .table > :not(:last-child) > :last-child > * {

@@ -14,13 +14,17 @@
     </li>
   </ul>
   <section class="cart-list mb-4 mb-md-6">
-    <h3 class="text-center mb-4">購物明細</h3>
+    <h3 class="text-center mb-3">購物明細</h3>
+    <div class="text-end mb-3">
+      <a href="#" class="btn btn-outline-primary" @click.prevent="removeCartAll(cartLength)">刪除全部</a>
+    </div>
+    <hr class="d-block d-sm-none">
     <div class="cart-list-table">
       <table class="table">
         <thead>
           <tr>
-            <th>刪除</th>
-            <th>商品明細</th>
+            <th></th>
+            <th class="">商品明細</th>
             <th>數量</th>
             <th class="text-end">單價</th>
             <th class="text-end">小計</th>
@@ -36,12 +40,12 @@
                 </a>
               </td>
               <td>
-                <div class="wrap">
+                <div class="wrap align-items-center">
                   <img :src="item.product.imageUrl" :alt="item.product.title">
                   <p>{{ item.product.title }}</p>
                 </div>
               </td>
-              <td>
+              <td data-title="數量" class="td-before">
                 <button type="button" class="btn px-0 py-0" @click="minus(item)">
                   <i class="bi bi-dash-circle" style="font-size: 24px"></i>
                 </button>
@@ -50,17 +54,14 @@
                   <i class="bi bi-plus-circle" style="font-size: 24px"></i>
                 </button>
               </td>
-              <td class="text-end">{{ $filters.currency(item.product.price) }}</td>
-              <td class="text-end">
-                NT ${{ $filters.currency(item.product.price * item.qty) }}
-              </td>
+              <td class="text-start text-sm-end td-before" data-title="單價">{{ $filters.currency(item.product.price) }}</td>
+              <td class="text-start text-sm-end td-before" data-title="小計">NT ${{ $filters.currency(item.product.price * item.qty) }}</td>
             </tr>
           </template>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2"><a href="#" class="btn btn-outline-primary" @click.prevent="removeCartAll(cartLength)">刪除全部</a></td>
-            <td colspan="3" class="text-end">
+            <td colspan="5" class="text-end">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="請輸入優惠卷" aria-label="coupons-btn" aria-describedby="coupons-btn" v-model="coupon_code">
                 <button class="btn btn-outline-primary" type="button" id="coupons-btn" @click="addCoupon">套用</button>
@@ -74,7 +75,10 @@
             </td>
           </tr>
           <tr v-if="cart.final_total !== cart.total">
-            <td colspan="5" class="text-end text-danger display-10 fw-bold">折扣後總金額 NT ${{ $filters.currency(cart.final_total) }}</td>
+            <td colspan="5" class="text-end text-danger">
+              <p class="text-danger mb-2">已套用優惠卷</p>
+              <p class="display-10 fw-bold">折扣後總金額 NT ${{ $filters.currency(cart.final_total) }}</p>
+            </td>
           </tr>
           <tr>
             <td colspan="5" class="next-btn text-end">

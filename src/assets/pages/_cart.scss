@@ -41,7 +41,7 @@
       background-color: $green;
     }
     @include pad() {
-      width: 140px;
+      width: 100%;
       max-width: 100%;
       margin: 8px;
     }
@@ -68,4 +68,20 @@
       object-position: center;
     }
   }
+}
+
+[aria-expanded='false'] .icon-open {
+  display: inline;
+}
+
+[aria-expanded='false'] .icon-close {
+  display: none;
+}
+
+[aria-expanded='true'] .icon-open {
+  display: none;
+}
+
+[aria-expanded='true'] .icon-close {
+  display: inline;
 }
