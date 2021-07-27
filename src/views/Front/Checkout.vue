@@ -101,6 +101,10 @@ export default {
         .then(res => {
           if (res.data.success) {
             this.order = res.data.order
+            history.pushState(null, null, document.URL)
+            window.addEventListener('popstate', function (e) {
+              history.pushState(null, null, document.URL)
+            }, false)
           }
         })
     },
@@ -122,6 +126,10 @@ export default {
             setTimeout(() => {
               this.$router.push('/')
             }, 2500)
+            history.pushState(null, null, document.URL)
+            window.addEventListener('popstate', function (e) {
+              history.pushState(null, null, document.URL)
+            }, false)
           }
         })
     },

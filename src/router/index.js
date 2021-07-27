@@ -68,6 +68,9 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'active',
+  scrollBehavior (to, from, savedPosition) {
+    return { left: 0, top: 0 }
+  },
   routes
 })
 

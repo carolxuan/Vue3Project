@@ -27,11 +27,6 @@ app.config.globalProperties.$httpMsgState = $httpMsgState
 // 金額千分位、時間換算
 app.config.globalProperties.$filters = { currency, date }
 
-// 切換路由時回到最頂部
-router.afterEach((to, from, next) => {
-  window.scrollTo(0, 0)
-})
-
 // sweetalert2
 const options = {
   toast: true,
