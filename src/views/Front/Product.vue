@@ -25,7 +25,7 @@
           <option value="0" disabled selected>請選擇數量</option>
           <option :value="num" v-for="num in 15" :key="num">{{ num }}</option>
         </select>
-        <a href="#" type="button" class="l-btn btn-outline--primary btn--md" @click.prevent="addCart(product.id, cartSelect)">加到購物車</a>
+        <a href="#" class="l-btn btn-outline--primary btn--md" @click.prevent="addCart(product.id, cartSelect)">加到購物車</a>
       </div>
     </div>
   </section>
