@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading">
-    <img src="../../assets/images/loadingImg.svg" alt="">
+    <img src="../../assets/images/loadingImg.svg" alt="loading">
   </Loading>
   <div class="wrap">
     <div class="sidebar-meun">

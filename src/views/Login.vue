@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-inner">
       <div class="text-center mb-6">
-        <img src="../assets/images/logo.svg">
+        <img src="../assets/images/logo.svg" alt="logo">
       </div>
       <div class="login-select mb-3">
         <a href="javascript:void(0)" class="pe-4 fw-bold display-10">登入</a>

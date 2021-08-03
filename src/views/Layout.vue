@@ -3,7 +3,7 @@
     <header>
       <div class="content-inner">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand logo" href="#"><img src="../assets/images/logo.svg" alt=""></a>
+          <a class="navbar-brand logo" href="#"><img src="../assets/images/logo.svg" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,7 +23,7 @@
     <main>
       <div class="container position-relative">
         <Loading :active="isLoading">
-          <img src="../assets/images/loadingImg.svg">
+          <img src="../assets/images/loadingImg.svg" alt="loading">
         </Loading>
         <div class="fixedFooter"></div>
         <router-view/>
@@ -40,9 +40,9 @@
         <router-link to="/login" class="text-dark px-3">登入</router-link>
       </div>
       <ul class="d-flex justify-content-center mb-3">
-        <li class="px-2"><a href="tel:0422222222"><img src="../assets/images/icon-tel.svg"></a></li>
-        <li class="px-2"><a href="mailto:123@gmail.com"><img src="../assets/images/icon-email.svg"></a></li>
-        <li class="px-2"><a href="#"><img src="../assets/images/icon-fb.svg"></a></li>
+        <li class="px-2"><a href="tel:0422222222"><img src="../assets/images/icon-tel.svg" alt="tell"></a></li>
+        <li class="px-2"><a href="mailto:123@gmail.com"><img src="../assets/images/icon-email.svg" alt="email"></a></li>
+        <li class="px-2"><a href="#"><img src="../assets/images/icon-fb.svg" alt="facebook"></a></li>
       </ul>
       <p class="text-center">ⓒ Copyright 2021 練習使用非商業用途</p>
     </footer>
