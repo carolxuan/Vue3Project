@@ -41,8 +41,8 @@ header {
   bottom: 100px;
   z-index: 99;
   @include Desktops() {
-    right: 16px;
-    top: 75px;
+    right: 18px;
+    bottom: 54px;
   }
   button {
     border-radius: 50%;

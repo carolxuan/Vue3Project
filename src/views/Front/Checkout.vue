@@ -17,15 +17,15 @@
     <form @submit.prevent="payOrder">
       <table class="table align-middle mb-5">
         <thead>
-          <th>品名</th>
-          <th>數量</th>
-          <th class="text-end">單價</th>
-          <th class="text-end">小計</th>
+          <th width="30%">品名</th>
+          <th width="15%">數量</th>
+          <th width="25%" class="text-end">單價</th>
+          <th width="25%" class="text-end">小計</th>
         </thead>
         <tbody>
         <tr v-for="item in order.products" :key="item.id">
           <td>{{ item.product.title }}</td>
-          <td>{{ item.qty }} / {{ item.product.unit }}</td>
+          <td>{{ item.qty }} {{ item.product.unit }}</td>
           <td class="text-end">NT ${{ $filters.currency(item.product.price) }}</td>
           <td class="text-end">NT ${{ $filters.currency(item.product.price * item.qty) }}</td>
         </tr>

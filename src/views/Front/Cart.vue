@@ -15,7 +15,7 @@
     <h2 class="text-center mb-6">購物專區</h2>
     <div class="row">
       <div class="col-md-3">
-        <div class="side-menu">
+        <div class="side-menu mb-4">
           <a class="btn btn-green d-md-none mb-2 ms-2" data-bs-toggle="collapse" href="#collapseExample" role="button"  aria-expanded="false" aria-controls="collapseExample">選擇品項 <i class="bi bi-chevron-down icon-open"></i><i class="bi bi-chevron-up icon-close"></i>
           </a>
           <div class="collapse d-md-block" id="collapseExample">
@@ -27,6 +27,14 @@
         </div>
       </div>
       <div class="col-md-9">
+        <div class="product-title mb-3 d-md-none d-block">
+          <h4 class="d-flex align-items-center justify-content-center">
+            <b></b>
+            <span v-if="filterText === ''">全部商品</span>
+            <span v-else>{{ filterText }}</span>
+            <b></b>
+          </h4>
+        </div>
         <ul class="product-wrap wrap mb-4">
           <li v-for="item in filterProducts" :key="item.id">
             <a href="#" @click.prevent="getProduct(item.id)">
