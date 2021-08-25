@@ -58,7 +58,7 @@
               name="電話"
               placeholder="請輸入電話"
               :class="{ 'is-invalid': errors['電話'] }"
-              rules="required"
+              :rules="isPhone"
               v-model="form.user.tel"
             />
             <ErrorMessage name="電話" class="invalid-feedback" />
@@ -155,6 +155,10 @@ export default {
             })
           }
         })
+    },
+    isPhone (value) {
+      const phoneNumber = /^(09)[0-9]{8}$/
+      return phoneNumber.test(value) ? true : '需要正確的電話號碼'
     },
     ...mapActions('cartModules', ['getCart'])
   },
