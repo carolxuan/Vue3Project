@@ -48,6 +48,24 @@
   }
 }
 
+.search-area {
+  max-width: 240px;
+  @include pad() {
+    max-width: 100%;
+    margin-left: 8px;
+  }
+}
+
+.no-results {
+  border-radius: 5px;
+  height: 160px;
+  padding: 56px 0;
+  text-align: center;
+  p {
+    font-size: 24px;
+  }
+}
+
 .product-title {
   b {
     height: 2px;

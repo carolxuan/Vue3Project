@@ -24,6 +24,19 @@
               <li v-for="item in categories" :key="item" @click="filterText = item" :class="{ 'active': item === filterText }">{{ item }}</li>
             </ul>
           </div>
+          <form class="search-area form-inline my-3 my-lg-0">
+            <div class="input-group">
+              <input class="form-control" type="text" v-model="searchText"
+                placeholder="想找什麼嗎？" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button"
+                  @click="searchText = ''">
+                  <i v-if="searchText" class="bi bi-x-lg"></i>
+                  <i v-else class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="col-md-9">
@@ -50,6 +63,13 @@
             </div>
           </li>
         </ul>
+        <div v-if="(searchText || filterProducts.length) && filterProducts.length == 0">
+          <div class="col-12 mb-4">
+            <div class="no-results bg-grayf8">
+              <p>找不到有關 '{{ searchText }}'</p>
+            </div>
+          </div>
+        </div>
         <Pagination :pages="pagination" @emit-page="getAllProducts" v-if="filterText===''" />
       </div>
     </div>
@@ -65,7 +85,8 @@ export default {
   data () {
     return {
       product: {},
-      filterText: ''
+      filterText: '',
+      searchText: ''
     }
   },
   components: {
@@ -94,10 +115,14 @@ export default {
   },
   computed: {
     filterProducts () {
-      if (this.filterText === '') {
-        return this.allProducts
+      if (this.filterText === '' && !this.searchText) {
+        return this.allProducts.filter(item => item.title.toLowerCase().includes(this.searchText.toLowerCase()))
+      } else if (!this.searchText) {
+        return this.products.filter(item => this.filterText.includes(item.category))
+      } else if (this.searchText) {
+        return this.products.filter(item => item.title.toLowerCase().includes(this.searchText.toLowerCase()))
       }
-      return this.products.filter(item => item.category === this.filterText)
+      return this.products
     },
     ...mapGetters('productsModules', ['products', 'categories', 'allProducts', 'pagination']),
     ...mapGetters('cartModules', ['cart'])
